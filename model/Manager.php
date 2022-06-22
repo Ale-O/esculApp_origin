@@ -206,7 +206,7 @@ class Manager
         {
             case 'Taches' :
                 $selectEventsSpeManager = '
-                    SELECT ev.identifiant identifiant, ev.nom nom, t.identifiant identifiant_type, t.intitule type, ev.contenu contenu, DATE_FORMAT(ev.debut, \'%d/%m/%Y \') debut, DATE_FORMAT(ev.fin, \'%d/%m/%Y \') fin,  ev.debut debut2, ev.fin fin2, e.identifiant identifiant_enseignant, e.nom enseignant, e.prenom prenom_enseignant, ev.corbeille etatCorbeille, th.identifiant identifiant_thematiqueTaches, th.intitule intitule_thematiqueTaches
+                    SELECT ev.identifiant identifiant, ev.nom nom, t.identifiant identifiant_type, t.intitule type, ev.contenu contenu, DATE_FORMAT(ev.debut, \'%d/%m/%Y \') debut, DATE_FORMAT(ev.fin, \'%d/%m/%Y \') fin,  ev.debut debut2, ev.fin fin2, e.identifiant identifiant_enseignant, e.nom enseignant, e.prenom prenom_enseignant, ev.corbeille etatCorbeille, th.identifiant identifiant_thematiqueTaches, th.intitule intitule_thematiqueTaches, supp.identifiant identifiant_support
                     FROM evenement_taches ev
                     LEFT JOIN enseignants e
                     ON ev.enseignant = e.identifiant
@@ -214,6 +214,11 @@ class Manager
                     ON ev.type_evenement = t.identifiant
                     LEFT JOIN thematique_taches th
                     ON ev.thematique = th.identifiant
+
+                    LEFT JOIN affectation_support afs
+                    ON e.affectation_support = afs.identifiant
+                    LEFT JOIN support supp
+                    ON afs.support = supp.identifiant
                 ';
 
             break;
@@ -277,7 +282,7 @@ class Manager
 
             case 'Avancements' :
                 $selectEventsSpeManager = '
-                    SELECT ev.identifiant identifiant, ev.nom nom, t.identifiant identifiant_type, t.intitule type, ev.contenu contenu, DATE_FORMAT(ev.debut, \'%d/%m/%Y \') debut, DATE_FORMAT(ev.fin, \'%d/%m/%Y \') fin,  ev.debut debut2, ev.fin fin2, e.identifiant identifiant_enseignant, e.nom enseignant, e.prenom prenom_enseignant, ev.corbeille etatCorbeille, aa.identifiant identifiant_avis_avancement, aa.intitule intitule_avis_avancement, ev.grade_cible etat_grade_cible
+                    SELECT ev.identifiant identifiant, ev.nom nom, t.identifiant identifiant_type, t.intitule type, ev.contenu contenu, DATE_FORMAT(ev.debut, \'%d/%m/%Y \') debut, DATE_FORMAT(ev.fin, \'%d/%m/%Y \') fin,  ev.debut debut2, ev.fin fin2, e.identifiant identifiant_enseignant, e.nom enseignant, e.prenom prenom_enseignant, ev.corbeille etatCorbeille, aa.identifiant identifiant_avis_avancement, aa.intitule intitule_avis_avancement, ev.grade_cible etat_grade_cible, supp.identifiant identifiant_support
                     FROM evenement_avancements ev
                     LEFT JOIN enseignants e
                     ON ev.enseignant = e.identifiant
@@ -285,6 +290,11 @@ class Manager
                     ON ev.type_evenement = t.identifiant
                     LEFT JOIN avis_avancement aa
                     ON ev.avis = aa.identifiant
+
+                    LEFT JOIN affectation_support afs
+                    ON e.affectation_support = afs.identifiant
+                    LEFT JOIN support supp
+                    ON afs.support = supp.identifiant
                 ';
 
             break;
@@ -292,7 +302,7 @@ class Manager
 
             case 'Primes_hr' :
                 $selectEventsSpeManager = '
-                    SELECT ev.identifiant identifiant, ev.nom nom, t.identifiant identifiant_type, t.intitule type, ev.contenu contenu, DATE_FORMAT(ev.debut, \'%d/%m/%Y \') debut, DATE_FORMAT(ev.fin, \'%d/%m/%Y \') fin,  ev.debut debut2, ev.fin fin2, e.identifiant identifiant_enseignant, e.nom enseignant, e.prenom prenom_enseignant, ev.corbeille etatCorbeille, np.identifiant identifiant_nature_primes_hr, np.intitule intitule_nature_primes_hr, ev.montant montant, ev.heures heures, e.id_mangue id_mangue, em.intitule emploi
+                    SELECT ev.identifiant identifiant, ev.nom nom, t.identifiant identifiant_type, t.intitule type, ev.contenu contenu, DATE_FORMAT(ev.debut, \'%d/%m/%Y \') debut, DATE_FORMAT(ev.fin, \'%d/%m/%Y \') fin,  ev.debut debut2, ev.fin fin2, e.identifiant identifiant_enseignant, e.nom enseignant, e.prenom prenom_enseignant, ev.corbeille etatCorbeille, np.identifiant identifiant_nature_primes_hr, np.intitule intitule_nature_primes_hr, ev.montant montant, ev.heures heures, e.id_mangue id_mangue, em.intitule emploi, supp.identifiant identifiant_support
                     FROM evenement_primes_hr ev
                     LEFT JOIN enseignants e
                     ON ev.enseignant = e.identifiant
@@ -302,6 +312,11 @@ class Manager
                     ON ev.nature = np.identifiant
                     LEFT JOIN emploi em
                     ON e.emploi = em.identifiant
+
+                    LEFT JOIN affectation_support afs
+                    ON e.affectation_support = afs.identifiant
+                    LEFT JOIN support supp
+                    ON afs.support = supp.identifiant
                 ';
 
             break;
