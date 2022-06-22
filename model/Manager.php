@@ -172,7 +172,7 @@ class Manager
     {
     try
         {
-            $db = new PDO('mysql:host=localhost;dbname=esculapp;charset=utf8', 'root', '', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+            $db = new PDO('mysql:host=localhost;dbname=esculapp_example;charset=utf8', 'root', '', array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
             return $db;
         }
         catch (Exception $e)
