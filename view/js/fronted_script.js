@@ -1,6 +1,6 @@
 
 
-// Chargement de la page
+
 
 
 
@@ -19,7 +19,7 @@ window.addEventListener("load", function(event) {
 
 
 
-// Fonction Tri dans les tableaux
+
 
 const compare = function(ids, asc){
   return function(row1, row2){
@@ -58,7 +58,7 @@ thx.forEach(function(th){
 
 
 
-// Fonctions Glisser - Déposer
+
 
 
 function onDragStart(event) {
@@ -121,7 +121,7 @@ function onDrop(event, el) {
 
 
 
-// Fonctions Remove
+
 
 
 function removeParent(el) {
@@ -144,7 +144,7 @@ function removeParent(el) {
 
 
 
-// Fonctions GPEC
+
 
 
 

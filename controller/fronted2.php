@@ -1486,24 +1486,7 @@ $rowColonne49 = ($colonne49 == "") ? '' : $row[$colonne49];
         $excel .= "$rowColonne1;\t$rowColonne2;\t$rowColonne3;\t$rowColonne4;\t$rowColonne5;\t$rowColonne6;\t$rowColonne7;\t$rowColonne8;\t$rowColonne9;\t$rowColonne10;\t$rowColonne11;\t$rowColonne12;\t$rowColonne13;\t$rowColonne14;\t$rowColonne15;\t$rowColonne16;\t$rowColonne17;\t$rowColonne18;\t$rowColonne19;\t$rowColonne20;\t$rowColonne21;\t$rowColonne22;\t$rowColonne23;\t$rowColonne24;\t$rowColonne25;\t$rowColonne26;\t$rowColonne27;\t$rowColonne28;\t$rowColonne29;\t$rowColonne30;\t$rowColonne31;\t$rowColonne32;\t$rowColonne33;\t$rowColonne34;\t$rowColonne35;\t$rowColonne36;\t$rowColonne37;\t$rowColonne38;\t$rowColonne39;\t$rowColonne40;\t$rowColonne41;\t$rowColonne42;\t$rowColonne43;\t$rowColonne44;\t$rowColonne45;\t$rowColonne46;\t$rowColonne47;\t$rowColonne48;\t$rowColonne49\n";
     }
 
-    // header('Content-Encoding: UTF-8');
-    // header('Content-type: text/csv; charset=UTF-8');
-    // header('Content-disposition: attachment; filename="'.$filename.'.csv"');
-    // echo "\xEF\xBB\xBF";
-    // print $excel;
-    // exit;
 
-
-    // header('Content-Description: File Transfer');
-    // header('Content-Type: application/octet-stream');
-    // header('Content-Disposition: attachment; filename="'.$filename.'.csv"');
-    // header('Content-Transfer-Encoding: binary');
-    // header('Expires: 0');
-    // header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
-    // header('Pragma: public');
-    // echo "\xEF\xBB\xBF"; // UTF-8 BOM
-    // echo $excel;
-    // exit();
     
     
     header ( 'HTTP/1.1 200 OK' );
@@ -2298,7 +2281,7 @@ function newEventSpe($typeEvent)
 
 
     $debut = ($_POST['debut'] == "") ? NULL : $_POST['debut'];
-//  $debut = ($data2['debut_grade'] == "") ? NULL : $data2['debut_grade'];
+
 
 
     $fin = ($_POST['fin'] == "") ? NULL : $_POST['fin'];
@@ -3778,78 +3761,7 @@ function gpec()
 
 
 
-        // $eventsSpeManager = new eventsSpeManager();
 
-        // $reqEventsSpeRev = $eventsSpeManager->getEventsSpeRevLiberationSupport('Revision_effectifs','present', $debut);
-
-
-
-
-
-
-        // while ($dataEventsSpeRev = $reqEventsSpeRev->fetch())
-
-        // {
-
-
-        //    array_push($listIdentifiantSupportsFree, 
-        //        array(
-        //            "identifiant_support" => $dataEventsSpeRev['identifiant_support'], 
-        //            "debut" => $dataEventsSpeRev['fin'], 
-        //            "fin" => NULL,
-        //            "debut2" => $dataEventsSpeRev['fin2'], 
-        //            "fin2" => NULL,
-        //        )
-        //    );
-
-        //}
-
-
-
-
-
-
-
-
-        // $eventsSpeManager = new eventsSpeManager();
-
-        // $reqEventsSpeAbs = $eventsSpeManager->getEventsSpeAbsByDates('Absence_departs','present', $debut);
-
-
-
-
-
-
-        // while ($dataEventsSpeAbs = $reqEventsSpeAbs->fetch())
-
-        // {
-
-
-
-
-
-        //        $date_fin = $dataEventsSpeAbs['fin'];
-        //        $date_fin = ($dataEventsSpeAbs['identifiant_absence_depart_arrivee'] == 49 OR $dataEventsSpeAbs['identifiant_absence_depart_arrivee'] == 50) ? NULL : $dataEventsSpeAbs['fin']; 
-
-        //        $date_fin2 = $dataEventsSpeAbs['fin2'];
-        //        $date_fin2 = ($dataEventsSpeAbs['identifiant_absence_depart_arrivee'] == 49 OR $dataEventsSpeAbs['identifiant_absence_depart_arrivee'] == 50) ? NULL : $dataEventsSpeAbs['fin2']; 
-
-        //        array_push($listIdentifiantSupportsFree, 
-        //            array(
-        //                "identifiant_support" => $dataEventsSpeAbs['identifiant_support'], 
-        //                "debut" => $dataEventsSpeAbs['debut'], 
-        //                "fin" => $date_fin,
-        //                "debut2" => $dataEventsSpeAbs['debut2'], 
-        //                "fin2" => $date_fin2,
-        //            )
-        //        );
-
-
-
-
-
-
-        // }
 
 
 

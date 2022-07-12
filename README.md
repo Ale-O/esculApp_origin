@@ -8,3 +8,5 @@
 3) by default one account has been created in the table "login"
   email : john.doe@autre.fr
   password : admin
+
+The function "connexions" is optional but if you want to use this, you must be adapt the function to your database

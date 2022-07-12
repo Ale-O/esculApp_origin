@@ -66,7 +66,7 @@ class SupportManager extends mgmtHU\Model\Manager
         $etatCorbeille = ($corbeille == "corbeille") ? 'su.Corbeille is not null' : 'su.Corbeille is null';
 
 
-        // $listIdentifiantSupportsFreeVide = ($listIdentifiantSupportsFree == "") ? 'OR identifiant != \'\' OR identifiant is NULL' : "";
+
 
         
         $listIdentifiant = "";
@@ -79,7 +79,7 @@ class SupportManager extends mgmtHU\Model\Manager
 
                 {
 
-                    // $listIdentifiant = $listIdentifiant . 'identifiant = '. $identifiant .' ' ;
+
 
                     $listIdentifiant = $listIdentifiant . 'su.identifiant = '. $identifiant["identifiant_support"] .' ' ;
 
@@ -89,7 +89,6 @@ class SupportManager extends mgmtHU\Model\Manager
 
                 {
 
-                    // $listIdentifiant = $listIdentifiant . ' OR identifiant = '. $identifiant .' ' ;
 
                     $listIdentifiant = $listIdentifiant . ' OR su.identifiant = '. $identifiant["identifiant_support"] .' ' ;
 
@@ -102,11 +101,7 @@ class SupportManager extends mgmtHU\Model\Manager
         $db = $this->dbConnect();
 
 
-        // $support = $db->prepare('
-        //    '.$select.'
-        //    WHERE '.$etatCorbeille.' AND ('.$listIdentifiant.')
-        //    ORDER BY numero_formate
-        // ');
+
 
 
         $support = $db->prepare('
