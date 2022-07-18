@@ -134,7 +134,7 @@
                     <option value="" selected>Sélectionner</option>
 
                                     <?php 
-                        require_once ('model/actifManager.php');
+                        require_once ('model/ActifManager.php');
                         $actifManager = new actifManager();
                         $reqList = $actifManager->getAllActif();
                         while ($dataList = $reqList->fetch())

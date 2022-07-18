@@ -141,7 +141,7 @@
                                                     <option value="" selected>Sélectionner</option>
 
                                             ';
-                                            require_once ('model/thematiqueTachesManager.php');
+                                            require_once ('model/ThematiqueTachesManager.php');
                                             $ThematiqueTachesManager = new ThematiqueTachesManager();
                                             $req3 = $ThematiqueTachesManager->getAllThematiqueTaches();
                                             while ($data3 = $req3->fetch())

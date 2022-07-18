@@ -140,7 +140,7 @@
                                                     <option value="'; echo $parametre1 ; echo '" selected>Valeur actuelle : '; echo $parametre1 ; echo '</option>
 
                                             ';
-                                            require_once ('model/thematiqueTachesManager.php');
+                                            require_once ('model/ThematiqueTachesManager.php');
                                             $ThematiqueTachesManager = new ThematiqueTachesManager();
                                             $req3 = $ThematiqueTachesManager->getAllThematiqueTaches();
                                             while ($data3 = $req3->fetch())

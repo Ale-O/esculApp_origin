@@ -190,7 +190,7 @@
                                                <option value="'; echo $identifiant_thematiqueTaches; echo ' " selected>Valeur actuelle : '; echo $intitule_thematiqueTaches; echo ' </option>
 
                                             ';
-                                            require_once ('model/thematiqueTachesManager.php');
+                                            require_once ('model/ThematiqueTachesManager.php');
                                             $ThematiqueTachesManager = new ThematiqueTachesManager();
                                             $req3 = $ThematiqueTachesManager->getAllThematiqueTaches();
                                             while ($data3 = $req3->fetch())
