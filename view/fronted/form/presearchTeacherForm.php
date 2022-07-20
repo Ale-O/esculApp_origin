@@ -129,7 +129,7 @@
                     <option value="<?php echo $actif ?>" selected>Valeur actuelle : <?php echo $actif ?></option>
 
                                     <?php 
-                        require_once ('model/actifManager.php');
+                        require_once ('model/ActifManager.php');
                         $actifManager = new actifManager();
                         $reqList = $actifManager->getAllActif();
                         while ($dataList = $reqList->fetch())
