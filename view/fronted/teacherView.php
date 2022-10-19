@@ -29,7 +29,7 @@
   <li class="nav-item"><a href="#connexion_bases_externes" class="nav-link">Connexions bases externes</a></li>
   <li class="nav-item"><a href="#support" class="nav-link">Support</a></li>
   <li class="nav-item"><a href="#trajectoire_hu" class="nav-link">Trajectoire HU</a></li>
-  <li class="nav-item"><a href="#presence_absence" class="nav-link">Présence/Abcence</a></li>
+  <li class="nav-item"><a href="#presence_absence" class="nav-link">Présence/Absence</a></li>
   <li class="nav-item"><a href="#avancement" class="nav-link">Avancement</a></li>
   <li class="nav-item"><a href="#retraite" class="nav-link">Retraite</a></li>
   <li class="nav-item"><a href="#prime" class="nav-link">Primes et heures référentielles</a></li>
