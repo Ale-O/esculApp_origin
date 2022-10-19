@@ -41,7 +41,7 @@
     <body class="text-center">
 
 
-        <?= $content ?>          
+        <?= $content; ?>          
 
 
 

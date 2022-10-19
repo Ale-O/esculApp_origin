@@ -7,12 +7,11 @@
         <?php
         $saveSearchManager = new saveSearchManager();
         $req = $saveSearchManager->getAllSaveSearch();
-        while ($data = $req->fetch())
-                    {  
-                        echo '
-                            <option value="' . $data['identifiant'] . '" >' . $data['nom'] .'</option>
-                        ';  
-                    }
+        while ($data = $req->fetch()) {
+            echo '
+                            <option value="'.$data['identifiant'].'" >'.$data['nom'].'</option>
+                        ';
+        }
                 $req->closeCursor();
         ?>
 

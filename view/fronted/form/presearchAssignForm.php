@@ -9,7 +9,7 @@
                           
                     <div class="form-group">
                         <label for="support" class="form-label">Support de poste : </label>
-                        <input type="text" name="support" class="form-control" value="<?php echo $support ?>"/>
+                        <input type="text" name="support" class="form-control" value="<?php echo $support; ?>"/>
                     </div>
 
                 </div>
@@ -19,7 +19,7 @@
 
                     <div class="form-group">
                         <label for="enseignant" class="form-label">Enseignant : </label>
-                        <input type="text" name="enseignant" class="form-control" value="<?php echo $enseignant ?>"/>
+                        <input type="text" name="enseignant" class="form-control" value="<?php echo $enseignant; ?>"/>
                     </div>
 
                 </div>
@@ -30,18 +30,17 @@
                     <div class="form-group">
                         <label for="emploi" class="form-label">Emploi</label>
                             <select name="emploi" class="form-select" id="emploi">
-                                <option value="<?php echo $emploi ?>" selected><?php echo $emploi ?></option>
+                                <option value="<?php echo $emploi; ?>" selected><?php echo $emploi; ?></option>
 
-                                    <?php 
-                        require_once ('model/EmploiManager.php');
+                                    <?php
+                        require_once 'model/EmploiManager.php';
                         $EmploiManager = new EmploiManager();
                         $reqList = $EmploiManager->getAllEmploi();
-                        while ($dataList = $reqList->fetch())
-                                    {  
-                                        echo '
-                                            <option value="' . $dataList['intitule'] . '">' . $dataList['intitule'] . '</option>
+                        while ($dataList = $reqList->fetch()) {
+                            echo '
+                                            <option value="'.$dataList['intitule'].'">'.$dataList['intitule'].'</option>
                                         ';
-                                    }
+                        }
                                 $reqList->closeCursor();
                         ?>
 
@@ -57,18 +56,17 @@
                     <div class="form-group">
                         <label for="sous_emploi" class="form-label">Sous-emploi</label>
                             <select name="sous_emploi" class="form-select" id="sous_emploi" >
-                                <option value="<?php echo $sous_emploi ?>" selected><?php echo $sous_emploi ?></option>
+                                <option value="<?php echo $sous_emploi; ?>" selected><?php echo $sous_emploi; ?></option>
 
-                                    <?php 
-                        require_once ('model/SousEmploiManager.php');
+                                    <?php
+                        require_once 'model/SousEmploiManager.php';
                         $SousEmploiManager = new SousEmploiManager();
                         $reqList = $SousEmploiManager->getAllSousEmploi();
-                        while ($dataList = $reqList->fetch())
-                                    {  
-                                        echo '
-                                            <option value="' . $dataList['intitule_sous_emploi'] . '">' . $dataList['intitule_sous_emploi'] . '</option>
+                        while ($dataList = $reqList->fetch()) {
+                            echo '
+                                            <option value="'.$dataList['intitule_sous_emploi'].'">'.$dataList['intitule_sous_emploi'].'</option>
                                         ';
-                                    }
+                        }
                                 $reqList->closeCursor();
                         ?>
 
@@ -91,7 +89,7 @@
                           
                     <div class="form-group">
                         <label for="startDate" class="form-label">A partir du : </label>
-                        <input type="date" name="startDate" class="form-control" value="<?php echo $startDate ?>"/>
+                        <input type="date" name="startDate" class="form-control" value="<?php echo $startDate; ?>"/>
                     </div>
                     <br>
 
@@ -102,7 +100,7 @@
 
                     <div class="form-group">
                         <label for="fin" class="form-label">Avant le : </label>
-                        <input type="date" name="fin" class="form-control" value="<?php echo $fin ?>"/>
+                        <input type="date" name="fin" class="form-control" value="<?php echo $fin; ?>"/>
                     </div>
 
                 </div>
@@ -113,18 +111,17 @@
                     <div class="form-group">
                         <label for="action_affectation" class="form-label">Action affectation</label>
                             <select name="action_affectation" class="form-select" id="action_affectation" >
-                                <option value="<?php echo $action_affectation ?>" selected>Valeur actuelle : <?php echo $action_affectation ?></option>
+                                <option value="<?php echo $action_affectation; ?>" selected>Valeur actuelle : <?php echo $action_affectation; ?></option>
 
-                        <?php 
-                        require_once ('model/ActionAffectationManager.php');
+                        <?php
+                        require_once 'model/ActionAffectationManager.php';
                         $ActionAffectationManager = new ActionAffectationManager();
                         $reqList = $ActionAffectationManager->getAllActionAffectation();
-                        while ($dataList = $reqList->fetch())
-                                    {  
-                                        echo '
-                                            <option value="' . $dataList['action'] . '" >' . $dataList['action'] .'</option>
-                                        ';  
-                                    }
+                        while ($dataList = $reqList->fetch()) {
+                            echo '
+                                            <option value="'.$dataList['action'].'" >'.$dataList['action'].'</option>
+                                        ';
+                        }
                                 $reqList->closeCursor();
                         ?>
 
@@ -150,7 +147,7 @@
 
                 <div class="form-group">
                     <label for="corbeille" class="form-label">Corbeille : </label>
-                    <input type="checkbox" name="corbeille" <?php echo $corbeilleChecked ?>/>
+                    <input type="checkbox" name="corbeille" <?php echo $corbeilleChecked; ?>/>
                 </div>
 
 
@@ -182,7 +179,7 @@
         </div>
         <div class="form-group">
             <label for="formule" class="form-label"></label>
-            <input type="hidden" name="formule" value="<?php echo $support.";".$enseignant.";".$emploi.";".$sous_emploi.";".$startDate.";".$fin.";".$corbeilleChecked.";".$action_affectation ?>"/>
+            <input type="hidden" name="formule" value="<?php echo $support.';'.$enseignant.';'.$emploi.';'.$sous_emploi.';'.$startDate.';'.$fin.';'.$corbeilleChecked.';'.$action_affectation; ?>"/>
         </div>
         <div class="form-group">
             <label for="nomSave" class="form-label">Nom de la recherche : </label>
@@ -201,12 +198,11 @@
 
         $saveSearchManager = new saveSearchManager();
         $reqSave = $saveSearchManager->getAllSaveSearchAssign();
-        while ($dataSave = $reqSave->fetch())
-                    {  
-                        echo '
-                            <option value="' . $dataSave['identifiant'] . '" >'. $dataSave['qui'] .' - '. $dataSave['nom'] .'</option>
-                        ';  
-                    }
+        while ($dataSave = $reqSave->fetch()) {
+            echo '
+                            <option value="'.$dataSave['identifiant'].'" >'.$dataSave['qui'].' - '.$dataSave['nom'].'</option>
+                        ';
+        }
                 $reqSave->closeCursor();
         ?>
 

@@ -1,358 +1,305 @@
-<?php session_start(); // $_SESSION ?>
+<?php session_start(); // $_SESSION?>
 
 <?php
 
-require('controller/fronted2.php');
+require 'controller/fronted2.php';
 
-
-
-
-
-if (isset($_GET['typeEvent'])){
-        $typeEvent =  $_GET['typeEvent'];
+if (isset($_GET['typeEvent'])) {
+    $typeEvent = $_GET['typeEvent'];
 }
 
-if (isset($_GET['idAffectationSupport'])){
-        $idAffectationSupport =  $_GET['idAffectationSupport'];
+if (isset($_GET['idAffectationSupport'])) {
+    $idAffectationSupport = $_GET['idAffectationSupport'];
 }
 
-if (isset($_GET['dataSend'])){
-        $dataSend =  $_GET['dataSend'];
+if (isset($_GET['dataSend'])) {
+    $dataSend = $_GET['dataSend'];
 }
 
-
-
-
-
-
-
-try 
-{
-
-    if(isset($_SESSION['loggedUser'])) 
-        {
-
-        if (isset($_GET['action'])) 
-            {
-                switch ($_GET['action'])
-                {
-                    case 'allTeachers' :
+try {
+    if (isset($_SESSION['loggedUser'])) {
+        if (isset($_GET['action'])) {
+            switch ($_GET['action']) {
+                    case 'allTeachers':
                         allTeachers();
                     break;
-                    case 'listAssign' :
+                    case 'listAssign':
                         listAssign();
                     break;
-                    case 'listTeacher' :
+                    case 'listTeacher':
                         listTeacher();
                     break;
-                    case 'teacher' :
+                    case 'teacher':
                         teacher();
                     break;
-                    case 'allAssigns' :
+                    case 'allAssigns':
                         allAssigns();
                     break;
 
-                    case 'createAssign' :
+                    case 'createAssign':
                         createAssign();
                     break;
 
-                    case 'createAssignFromEvent' :
+                    case 'createAssignFromEvent':
                         createAssignFromEvent($typeEvent);
                     break;
 
-                    case 'createMultipleAssign' :
+                    case 'createMultipleAssign':
                         createMultipleAssign();
                     break;
 
-                    case 'newAssign' :
+                    case 'newAssign':
                         newAssign();
                     break;
 
-                    case 'newMultipleAssign' :
+                    case 'newMultipleAssign':
                         newMultipleAssign();
                     break;
 
-                    case 'createTeacher' :
+                    case 'createTeacher':
                         createTeacher();
                     break;
-                    case 'newTeacher' :
+                    case 'newTeacher':
                         newTeacher();
                     break;
-                    case 'editTeacher' :
+                    case 'editTeacher':
                         editTeacher();
                     break;
-                    case 'modifTeacher' :
+                    case 'modifTeacher':
                         modifTeacher();
                     break;
-                    case 'editAssign' :
+                    case 'editAssign':
                         editAssign();
                     break;
-                    case 'modifAssign' :
+                    case 'modifAssign':
                         modifAssign();
                     break;
-                    case 'deleteTeacher' :
+                    case 'deleteTeacher':
                         deleteTeacher();
                     break;
-                    case 'deleteAssign' :
+                    case 'deleteAssign':
                         deleteAssign();
                     break;
-                    case 'confirmDeleteTeacher' :
+                    case 'confirmDeleteTeacher':
                         confirmDeleteTeacher();
                     break;
-                    case 'confirmDeleteAssign' :
+                    case 'confirmDeleteAssign':
                         confirmDeleteAssign();
                     break;
-                    case 'assign' :
+                    case 'assign':
                         assign();
                     break;
-                    case 'restoreTeacher' :
+                    case 'restoreTeacher':
                         restoreTeacher();
                     break;
-                    case 'restoreAssign' :
+                    case 'restoreAssign':
                         restoreAssign();
                     break;
-                    case 'suivi' :
+                    case 'suivi':
                         suivi();
                     break;
-                    case 'listSuivi' :
+                    case 'listSuivi':
                         listSuivi();
                     break;
-                    case 'copyTeacher' :
+                    case 'copyTeacher':
                         copyTeacher();
                     break;
-                    case 'saveSearch' :
+                    case 'saveSearch':
                         saveSearch();
                     break;
-                    case 'exportAllTeacher' :
+                    case 'exportAllTeacher':
                         exportAllTeacher();
                     break;
-                    case 'exportListTeacher' :
+                    case 'exportListTeacher':
                         exportListTeacher();
                     break;
-                    case 'exportAllAssign' :
+                    case 'exportAllAssign':
                         exportAllAssign();
                     break;
-                    case 'exportListAssign' :
+                    case 'exportListAssign':
                         exportListAssign();
                     break;
-                    case 'deconnexion' :
+                    case 'deconnexion':
                         session_destroy();
                         login();
                     break;
-                    case 'profil' :
+                    case 'profil':
                         profil();
                     break;
-                    case 'changeProfil' :
+                    case 'changeProfil':
                         changeProfil();
                     break;
 
-
-                    case 'suppSaveSearch' :
+                    case 'suppSaveSearch':
                         suppSaveSearch();
                     break;
 
-
-                    case 'allEvents' :
+                    case 'allEvents':
                         allEvents();
                     break;
-                    case 'listEvents' :
+                    case 'listEvents':
                         listEvents();
                     break;
-                    case 'createEvent' :
+                    case 'createEvent':
                         createEvent();
                     break;
-                    case 'newEvent' :
+                    case 'newEvent':
                         newEvent();
                     break;
-                    case 'event' :
+                    case 'event':
                         event();
                     break;
-                    case 'editEvent' :
+                    case 'editEvent':
                         editEvent();
                     break;
-                    case 'copyEvent' :
+                    case 'copyEvent':
                         copyEvent();
                     break;
-                    case 'modifEvent' :
+                    case 'modifEvent':
                         modifEvent();
                     break;
-                    case 'exportAllEvents' :
+                    case 'exportAllEvents':
                         exportAllEvents();
                     break;
-                    case 'exportListEvents' :
+                    case 'exportListEvents':
                         exportListEvents();
                     break;
-                    case 'confirmDeleteEvent' :
+                    case 'confirmDeleteEvent':
                         confirmDeleteEvent();
                     break;
-                    case 'restoreEvent' :
+                    case 'restoreEvent':
                         restoreEvent();
                     break;
-                    case 'deleteEvent' :
+                    case 'deleteEvent':
                         deleteEvent();
-                    break;      
-                    case 'allEventsSpe' :
+                    break;
+                    case 'allEventsSpe':
                         allEventsSpe($typeEvent);
                     break;
-                    case 'listEventsSpe' :
+                    case 'listEventsSpe':
                         listEventsSpe($typeEvent);
                     break;
-                    case 'createEventSpe' :
+                    case 'createEventSpe':
                         createEventSpe($typeEvent);
                     break;
-                    case 'newEventSpe' :
+                    case 'newEventSpe':
                         newEventSpe($typeEvent);
                     break;
-                    case 'eventSpe' :
+                    case 'eventSpe':
                         eventSpe($typeEvent);
                     break;
-                    case 'editEventSpe' :
+                    case 'editEventSpe':
                         editEventSpe($typeEvent);
                     break;
-                    case 'copyEventSpe' :
+                    case 'copyEventSpe':
                         copyEventSpe($typeEvent);
                     break;
-                    case 'modifEventSpe' :
+                    case 'modifEventSpe':
                         modifEventSpe($typeEvent);
                     break;
-                    case 'exportAllEventsSpe' :
+                    case 'exportAllEventsSpe':
                         exportAllEventsSpe($typeEvent);
                     break;
-                    case 'exportListEventsSpe' :
+                    case 'exportListEventsSpe':
                         exportListEventsSpe($typeEvent);
                     break;
-                    case 'confirmDeleteEventSpe' :
+                    case 'confirmDeleteEventSpe':
                         confirmDeleteEventSpe($typeEvent);
                     break;
-                    case 'restoreEventSpe' :
+                    case 'restoreEventSpe':
                         restoreEventSpe($typeEvent);
                     break;
-                    case 'deleteEventSpe' :
+                    case 'deleteEventSpe':
                         deleteEventSpe($typeEvent);
                     break;
 
-
-
-                    case 'importView' :
+                    case 'importView':
                         importView();
                     break;
-                    case 'newMangueImport' :
+                    case 'newMangueImport':
                         newMangueImport();
                     break;
-                    case 'newChuImport' :
+                    case 'newChuImport':
                         newChuImport();
                     break;
 
-
-                    case 'IdMangueView' :
+                    case 'IdMangueView':
                         IdMangueView();
                     break;
-                    case 'NomChuView' :
+                    case 'NomChuView':
                         NomChuView();
                     break;
 
-
-
-                    case 'allSupport' :
+                    case 'allSupport':
                         allSupport();
                     break;
-                    case 'listSupport' :
+                    case 'listSupport':
                         listSupport();
                     break;
-                    case 'support' :
+                    case 'support':
                         support();
                     break;
 
-
-                    case 'createSupport' :
+                    case 'createSupport':
                         createSupport();
                     break;
-                    case 'newSupport' :
+                    case 'newSupport':
                         newSupport();
                     break;
 
-
-                    case 'copySupport' :
+                    case 'copySupport':
                         copySupport();
                     break;
 
-
-                    case 'editSupport' :
+                    case 'editSupport':
                         editSupport();
                     break;
-                    case 'modifSupport' :
+                    case 'modifSupport':
                         modifSupport();
                     break;
 
-
-
-                    case 'deleteSupport' :
+                    case 'deleteSupport':
                         deleteSupport();
                     break;
-                    case 'confirmDeleteSupport' :
+                    case 'confirmDeleteSupport':
                         confirmDeleteSupport();
                     break;
-                    case 'restoreSupport' :
+                    case 'restoreSupport':
                         restoreSupport();
                     break;
 
-
-
-                    case 'exportAllSupport' :
+                    case 'exportAllSupport':
                         exportAllSupport();
                     break;
-                    case 'exportListSupport' :
+                    case 'exportListSupport':
                         exportListSupport();
                     break;
 
-
-
-
-                    case 'majAllEnseignantByMangue' :
+                    case 'majAllEnseignantByMangue':
                         majAllEnseignantByMangue();
                     break;
 
-
-
-                    case 'gpec' :
+                    case 'gpec':
                         gpec();
                     break;
 
-
-                    case 'sendHypotheseAjaxPost' :
-                        sendHypotheseAjaxPost($idAffectationSupport,$dataSend);
+                    case 'sendHypotheseAjaxPost':
+                        sendHypotheseAjaxPost($idAffectationSupport, $dataSend);
                     break;
 
-
-                    case 'responseCountEventsAjax' :
+                    case 'responseCountEventsAjax':
                         responseCountEventsAjax();
                     break;
-
-
 
                     default:
                         throw new Exception('Aucun contrôleur trouvé');
                 }
-            }
-            
-
-            else {
-                home();
-            }
-
-    }
-
-    else {
-
+        } else {
+            home();
+        }
+    } else {
         login();
-
-
     }
-
-    
-
-}
-
-catch(Exception $e) {
-    echo 'Erreur : ' . $e->getMessage();
+} catch (Exception $e) {
+    echo 'Erreur : '.$e->getMessage();
 }

@@ -16,11 +16,10 @@
     '; ?>
 
 
-    <?php require("view/fronted/import/importMangueForm.php"); ?>
+    <?php require 'view/fronted/import/importMangueForm.php'; ?>
 
 
-    <?php 
-
+    <?php
 
        echo '
 
@@ -86,33 +85,18 @@
        </thead>
        <tbody>';
 
-
-
-
-
-
-
-        $Reader->ChangeSheet(0);            
+        $Reader->ChangeSheet(0);
 
         $j = 0;
 
-        $listIdentifiantMangue = array();
-
+        $listIdentifiantMangue = [];
 
         /* For Loop for all sheets */
 
+            foreach ($Reader as $Column) {
+                ++$j;
 
-            foreach ($Reader as $Column)
-
-            {
-
-                $j ++;
-
-                if ($j > 1) 
-
-                {
-
-
+                if ($j > 1) {
                     $NoEncodecolomn1 = isset($Column[0]) ? $Column[0] : '';
 
                     $colomn1 = utf8_encode($NoEncodecolomn1);
@@ -165,10 +149,10 @@
 
                     $colomn13 = utf8_encode($NoEncodecolomn13);
 
-                    $NoEncodecolomn14 = isset($Column[13]) ? $Column[13] : ''; 
+                    $NoEncodecolomn14 = isset($Column[13]) ? $Column[13] : '';
 
                     $colomn14 = utf8_encode($NoEncodecolomn14);
-                    
+
                     $NoEncodecolomn15 = isset($Column[14]) ? $Column[14] : '';
 
                     $colomn15 = utf8_encode($NoEncodecolomn15);
@@ -221,7 +205,7 @@
 
                     $colomn27 = utf8_encode($NoEncodecolomn27);
 
-                    $NoEncodecolomn28 = isset($Column[27]) ? $Column[27] : '';  
+                    $NoEncodecolomn28 = isset($Column[27]) ? $Column[27] : '';
 
                     $colomn28 = utf8_encode($NoEncodecolomn28);
 
@@ -305,10 +289,9 @@
 
                     $colomn48 = utf8_encode($NoEncodecolomn48);
 
-                    $NoEncodecolomn49 = isset($Column[48]) ? $Column[48] : '';   
+                    $NoEncodecolomn49 = isset($Column[48]) ? $Column[48] : '';
 
                     $colomn49 = utf8_encode($NoEncodecolomn49);
-
 
                     echo '<tr>
 
@@ -364,62 +347,24 @@
 
                     </tr>';
 
-
-
-
-                    if (in_array($colomn12, $listIdentifiantMangue))
-
-                    {
-
-
-
-
-                    }
-
-
-                    else
-
-                    {
-
-
-                        if (in_array($colomn12, $listIdentifiant))
-                            {
-
-
-                                $req2 = $IdMangueManager->modifIdMangue($colomn12,$colomn1,$colomn2,$colomn3,$colomn4,$colomn5,$colomn6,$colomn7,$colomn8,$colomn9,$colomn10,$colomn11,$colomn13,$colomn14,$colomn15,$colomn16,$colomn17,$colomn18,$colomn19,$colomn20,$colomn21,$colomn22,$colomn23,$colomn24,$colomn25,$colomn26,$colomn27,$colomn28,$colomn29,$colomn30,$colomn31,$colomn32,$colomn33,$colomn34,$colomn35,$colomn36,$colomn37,$colomn38,$colomn39,$colomn40,$colomn41,$colomn42,$colomn43,$colomn44,$colomn45,$colomn46,$colomn47,$colomn48,$colomn49);
-
-
-
-
-                            }
-
-                        else
-                            {
-
-                                $req1 = $IdMangueManager->createIdMangue($colomn12,$colomn1,$colomn2,$colomn3,$colomn4,$colomn5,$colomn6,$colomn7,$colomn8,$colomn9,$colomn10,$colomn11,$colomn13,$colomn14,$colomn15,$colomn16,$colomn17,$colomn18,$colomn19,$colomn20,$colomn21,$colomn22,$colomn23,$colomn24,$colomn25,$colomn26,$colomn27,$colomn28,$colomn29,$colomn30,$colomn31,$colomn32,$colomn33,$colomn34,$colomn35,$colomn36,$colomn37,$colomn38,$colomn39,$colomn40,$colomn41,$colomn42,$colomn43,$colomn44,$colomn45,$colomn46,$colomn47,$colomn48,$colomn49);
-
-                            }
-
-
+                    if (in_array($colomn12, $listIdentifiantMangue)) {
+                    } else {
+                        if (in_array($colomn12, $listIdentifiant)) {
+                            $req2 = $IdMangueManager->modifIdMangue($colomn12, $colomn1, $colomn2, $colomn3, $colomn4, $colomn5, $colomn6, $colomn7, $colomn8, $colomn9, $colomn10, $colomn11, $colomn13, $colomn14, $colomn15, $colomn16, $colomn17, $colomn18, $colomn19, $colomn20, $colomn21, $colomn22, $colomn23, $colomn24, $colomn25, $colomn26, $colomn27, $colomn28, $colomn29, $colomn30, $colomn31, $colomn32, $colomn33, $colomn34, $colomn35, $colomn36, $colomn37, $colomn38, $colomn39, $colomn40, $colomn41, $colomn42, $colomn43, $colomn44, $colomn45, $colomn46, $colomn47, $colomn48, $colomn49);
+                        } else {
+                            $req1 = $IdMangueManager->createIdMangue($colomn12, $colomn1, $colomn2, $colomn3, $colomn4, $colomn5, $colomn6, $colomn7, $colomn8, $colomn9, $colomn10, $colomn11, $colomn13, $colomn14, $colomn15, $colomn16, $colomn17, $colomn18, $colomn19, $colomn20, $colomn21, $colomn22, $colomn23, $colomn24, $colomn25, $colomn26, $colomn27, $colomn28, $colomn29, $colomn30, $colomn31, $colomn32, $colomn33, $colomn34, $colomn35, $colomn36, $colomn37, $colomn38, $colomn39, $colomn40, $colomn41, $colomn42, $colomn43, $colomn44, $colomn45, $colomn46, $colomn47, $colomn48, $colomn49);
+                        }
 
                         array_push($listIdentifiantMangue, $colomn12);
-
-
-
                     }
-                    
                 }
-
             }
 
-
-
     echo '</tbody></table>';
-
 
     ?>
 
                         
 
 <?php $content = ob_get_clean(); ?>
-<?php require('view/fronted/template/template.php'); ?>
+<?php require 'view/fronted/template/template.php'; ?>

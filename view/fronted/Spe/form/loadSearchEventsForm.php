@@ -1,5 +1,5 @@
 <hr>
-<form action="index.php?action=listEventsSpe&typeEvent=<?php echo $typeEvent ?>" method="post">
+<form action="index.php?action=listEventsSpe&typeEvent=<?php echo $typeEvent; ?>" method="post">
     <div class="col-md-5 mb-3">
         <label for="loadSearch" class="form-label">Recherches enregistrées</label>
             <select name="loadSearch" class="form-select" id="loadSearch" >
@@ -7,30 +7,23 @@
 
         <?php
 
-
-        if (isset($presearch)){
-
+        if (isset($presearch)) {
             echo
             '
             
-            <option value="' . $dataSaveLoad['identifiant'] . '" selected>Valeur actuelle : '. $dataSaveLoad['qui'] .' - '. $dataSaveLoad['nom'] .' </option>
+            <option value="'.$dataSaveLoad['identifiant'].'" selected>Valeur actuelle : '.$dataSaveLoad['qui'].' - '.$dataSaveLoad['nom'].' </option>
 
             '
             ;
-
-
-        } 
-
-
+        }
 
         $saveSearchManager = new saveSearchManager();
         $reqSave = $saveSearchManager->getAllSaveSearchEventSpe($typeEvent);
-        while ($dataSave = $reqSave->fetch())
-                    {  
-                        echo '
-                            <option value="' . $dataSave['identifiant'] . '" >'. $dataSave['qui'] .' - '. $dataSave['nom'] .'</option>
-                        ';  
-                    }
+        while ($dataSave = $reqSave->fetch()) {
+            echo '
+                            <option value="'.$dataSave['identifiant'].'" >'.$dataSave['qui'].' - '.$dataSave['nom'].'</option>
+                        ';
+        }
                 $reqSave->closeCursor();
         ?>
 

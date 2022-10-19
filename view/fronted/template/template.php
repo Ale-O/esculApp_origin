@@ -2,16 +2,16 @@
 
 <!DOCTYPE html>
 <html lang="fr">
-    <?php require("head.php"); ?>
+    <?php require 'head.php'; ?>
     <body>
         <div>
             
-            <?php require("header.php"); ?>
+            <?php require 'header.php'; ?>
             
             <div class="container-fluid">
                 <div class="row">
 
-                    <?php require("nav.php"); ?>
+                    <?php require 'nav.php'; ?>
 
                     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
                             <div>
@@ -34,7 +34,7 @@ Bas de page</a>
 
 
                                         <br>
-                                        <?= $content ?>     
+                                        <?= $content; ?>     
                                         <br>
 
  <p id="down"></p>

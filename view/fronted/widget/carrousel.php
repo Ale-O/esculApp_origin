@@ -1,11 +1,10 @@
-<?php 
-
+<?php
 
     $eventsManager = new eventsManager();
 
-    $today = date("Y-m-d");
+    $today = date('Y-m-d');
 
-    $reqCarrousel = $eventsManager->getEvents('present',"","","",$today,"","");
+    $reqCarrousel = $eventsManager->getEvents('present', '', '', '', $today, '', '');
 
     $dataCarrousel = $reqCarrousel->fetchAll();
 
@@ -21,26 +20,18 @@
 
     ';
 
+    foreach ($dataCarrousel as $elementCarrousel) {
+        $etatElement = ($compteur == 0) ? 'active' : '';
 
-    foreach ($dataCarrousel as $elementCarrousel)
-    {
-
-
-      $etatElement = ($compteur == 0) ? "active" : "";
-
-
-    echo'
+        echo'
 
       <li data-bs-target="#myCarousel" data-bs-slide-to="'.$compteur.'" class="'.$etatElement.'"></li>
 
 
     ';
 
-      $compteur ++;
-
-
+        ++$compteur;
     }
-
 
     echo'
 
@@ -55,19 +46,14 @@
 
     ';
 
-
     $compteur = 0;
 
+    foreach ($dataCarrousel as $elementCarrousel) {
+        ++$compteur;
 
-    foreach ($dataCarrousel as $elementCarrousel)
-    {
+        $etatElement = ($compteur == '1') ? 'active' : '';
 
-      $compteur ++;
-
-      $etatElement = ($compteur == "1") ? "active" : "";
-
-
-    echo'
+        echo'
 
             <div class="carousel-item '.$etatElement.'">
 
@@ -78,7 +64,7 @@
             <h1 style="color:black;">'.$elementCarrousel['nom'].'</h1>
             <h3 style="color:black;">'.$elementCarrousel['debut'].'</h3>
             <br>
-            <p><a class="btn btn-lg btn-primary" href="index.php?action=event&identifiant=' . $elementCarrousel['identifiant'] . '" role="button">Allez!</a></p>
+            <p><a class="btn btn-lg btn-primary" href="index.php?action=event&identifiant='.$elementCarrousel['identifiant'].'" role="button">Allez!</a></p>
           </div>
         </div>
 
@@ -86,11 +72,7 @@
 
 
     ';
-
-
     }
-
-
 
     echo'
 
@@ -110,12 +92,6 @@
 
 
     ';
-
-
-
-
-
-
 
 ?>
 

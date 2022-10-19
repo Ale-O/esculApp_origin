@@ -16,11 +16,10 @@
     '; ?>
 
 
-    <?php require("view/fronted/import/importChuForm.php"); ?>
+    <?php require 'view/fronted/import/importChuForm.php'; ?>
 
 
-    <?php 
-
+    <?php
 
        echo '
 
@@ -50,31 +49,18 @@
        </thead>
        <tbody>';
 
-
-
-
-
-
-        $Reader->ChangeSheet(2);            
+        $Reader->ChangeSheet(2);
 
         $j = 0;
 
-        $listIdentifiantChu = array();
-
+        $listIdentifiantChu = [];
 
             /* For Loop for all sheets */
 
-            foreach ($Reader as $Column)
+            foreach ($Reader as $Column) {
+                ++$j;
 
-            {
-
-                $j ++;
-
-                if ($j > 1) 
-
-                {
-
-
+                if ($j > 1) {
                     $NoEncodecolomn1 = isset($Column[0]) ? $Column[0] : '';
 
                     $colomn1 = utf8_encode($NoEncodecolomn1);
@@ -127,10 +113,7 @@
 
                     $colomn13 = utf8_encode($NoEncodecolomn13);
 
-
-                    $colomn14 = strtoupper($colomn7) ."". $colomn8;
-
-
+                    $colomn14 = strtoupper($colomn7).''.$colomn8;
 
                     echo '<tr>
 
@@ -151,58 +134,24 @@
 
                     </tr>';
 
-
-                    if (in_array($colomn14, $listIdentifiantChu))
-
-                    {
-
-
-
-
-
-                    }
-
-
-                    else
-
-                    {
-
-
-
-                        if (in_array($colomn14, $listIdentifiant))
-                            {
-
-
-                                $req2 = $NomChuManager->modifNomChu($colomn14,$colomn1,$colomn2,$colomn3,$colomn4,$colomn5,$colomn6,$colomn7,$colomn8,$colomn9,$colomn10,$colomn11,$colomn12,$colomn13);
-
-                            }
-
-                        else
-                            {
-
-                                $req1 = $NomChuManager->createNomChu($colomn14,$colomn1,$colomn2,$colomn3,$colomn4,$colomn5,$colomn6,$colomn7,$colomn8,$colomn9,$colomn10,$colomn11,$colomn12,$colomn13);
-
-                            }
-
+                    if (in_array($colomn14, $listIdentifiantChu)) {
+                    } else {
+                        if (in_array($colomn14, $listIdentifiant)) {
+                            $req2 = $NomChuManager->modifNomChu($colomn14, $colomn1, $colomn2, $colomn3, $colomn4, $colomn5, $colomn6, $colomn7, $colomn8, $colomn9, $colomn10, $colomn11, $colomn12, $colomn13);
+                        } else {
+                            $req1 = $NomChuManager->createNomChu($colomn14, $colomn1, $colomn2, $colomn3, $colomn4, $colomn5, $colomn6, $colomn7, $colomn8, $colomn9, $colomn10, $colomn11, $colomn12, $colomn13);
+                        }
 
                         array_push($listIdentifiantChu, $colomn14);
-
-
-
                     }
-                    
                 }
-
             }
 
-
-
     echo '</tbody></table>';
-
 
     ?>
 
                         
 
 <?php $content = ob_get_clean(); ?>
-<?php require('view/fronted/template/template.php'); ?>
+<?php require 'view/fronted/template/template.php'; ?>

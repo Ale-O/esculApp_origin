@@ -1,37 +1,31 @@
 <?php
 
-require_once ('model/Manager.php');
+require_once 'model/Manager.php';
 
 class SuiviManager extends mgmtHU\Model\Manager
 {
-   
-
-   
     public function getAllSuivi()
-    {   
-        
-
+    {
         $select = $this->selectSuiviManager();
 
         $db = $this->dbConnect();
         $allSuivi = $db->prepare('
             '.$select.'
             ORDER BY quand
-            '); 
-        $allSuivi->execute(array());
+            ');
+        $allSuivi->execute([]);
+
         return $allSuivi;
     }
 
-
-    public function getSuivi($qui,$quand,$quoiTable,$nomEnregistrement)
+    public function getSuivi($qui, $quand, $quoiTable, $nomEnregistrement)
     {
-
         $select = $this->selectSuiviManager();
 
-        $qui_vide = ($qui == "") ? 'OR s.qui != \'\' OR s.qui is NULL' : "";
-        $quand_vide = ($quand == "") ? 'OR s.quand != \'\' OR s.quand is NULL' : "";
-        $quoiTable_vide = ($quoiTable == "") ? 'OR s.quoiTable != \'\' OR s.quoiTable is NULL' : "";
-        $nomEnregistremen_vide = ($nomEnregistrement == "") ? 'OR s.nomEnregistrement != \'\' OR s.nomEnregistrement is NULL' : "";
+        $qui_vide = ($qui == '') ? 'OR s.qui != \'\' OR s.qui is NULL' : '';
+        $quand_vide = ($quand == '') ? 'OR s.quand != \'\' OR s.quand is NULL' : '';
+        $quoiTable_vide = ($quoiTable == '') ? 'OR s.quoiTable != \'\' OR s.quoiTable is NULL' : '';
+        $nomEnregistremen_vide = ($nomEnregistrement == '') ? 'OR s.nomEnregistrement != \'\' OR s.nomEnregistrement is NULL' : '';
 
         $db = $this->dbConnect();
         $listSuivi = $db->prepare('
@@ -40,24 +34,24 @@ class SuiviManager extends mgmtHU\Model\Manager
             ORDER BY quand
             ');
 
-        $listSuivi->execute(array(
-            'qui'=> "%".$qui."%",
-            'quand'=> "%".$quand."%",
-            'quoiTable'=> "%".$quoiTable."%",
-            'nomEnregistrement'=> "%".$nomEnregistrement."%"
-            ));    
+        $listSuivi->execute([
+            'qui' => '%'.$qui.'%',
+            'quand' => '%'.$quand.'%',
+            'quoiTable' => '%'.$quoiTable.'%',
+            'nomEnregistrement' => '%'.$nomEnregistrement.'%',
+            ]);
+
         return $listSuivi;
     }
 
-
-    public function createSuivi($qui,$quoiTable,$nomEnregistrement,$idEnregistrement,$champsEnregistrement,$ancienneValeur,$nouvelleValeur)
+    public function createSuivi($qui, $quoiTable, $nomEnregistrement, $idEnregistrement, $champsEnregistrement, $ancienneValeur, $nouvelleValeur)
     {
         $db = $this->dbConnect();
         $newSuivi = $db->prepare('INSERT INTO suivi (identifiant,qui,quand,quoiTable,nomEnregistrement,idEnregistrement,champsEnregistrement,ancienneValeur,nouvelleValeur) 
 
         VALUES (NULL,:qui,CURRENT_TIMESTAMP,:quoiTable,:nomEnregistrement,:idEnregistrement,:champsEnregistrement,:ancienneValeur,:nouvelleValeur);');
 
-        $newSuivi->execute(array(
+        $newSuivi->execute([
             'qui' => $qui,
             'quoiTable' => $quoiTable,
             'nomEnregistrement' => $nomEnregistrement,
@@ -65,13 +59,8 @@ class SuiviManager extends mgmtHU\Model\Manager
             'champsEnregistrement' => $champsEnregistrement,
             'ancienneValeur' => $ancienneValeur,
             'nouvelleValeur' => $nouvelleValeur,
-            ));
+            ]);
+
         return $newSuivi;
     }
-    
-
-
-
-
-    
 }

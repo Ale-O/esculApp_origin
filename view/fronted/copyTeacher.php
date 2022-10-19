@@ -1,26 +1,22 @@
 <?php ob_start(); ?>
 
    
-    <?php 
+    <?php
 
         $TeacherManager = new TeacherManager();
         $req = $TeacherManager->getTeachersById($identifiant);
-        
+
         $data = $req->fetch();
 
-            require ("view/fronted/data/dataTeacher.php");
-
-
-
+            require 'view/fronted/data/dataTeacher.php';
 
         $req->closeCursor();
 
-
-        require ("view/fronted/form/copyTeacherForm.php");
+        require 'view/fronted/form/copyTeacherForm.php';
 
     ?>
     
                     
 <?php $content = ob_get_clean(); ?>
-<?php require('view/fronted/template/template.php'); ?>
+<?php require 'view/fronted/template/template.php'; ?>
 

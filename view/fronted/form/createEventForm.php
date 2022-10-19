@@ -25,16 +25,15 @@
                             <select name="type" class="form-select" id="type" required>
                                 <option value="">Sélectionner</option>
 
-                        <?php 
-                        require_once ('model/typeEventsManager.php');
+                        <?php
+                        require_once 'model/typeEventsManager.php';
                         $typeEventsManager = new typeEventsManager();
                         $req1 = $typeEventsManager->getAllTypeEvents();
-                        while ($data1 = $req1->fetch())
-                                    {  
-                                        echo '
-                                            <option value="' . $data1['identifiant'] . '" >' . $data1['intitule'] .'</option>
-                                        ';  
-                                    }
+                        while ($data1 = $req1->fetch()) {
+                            echo '
+                                            <option value="'.$data1['identifiant'].'" >'.$data1['intitule'].'</option>
+                                        ';
+                        }
                                 $req1->closeCursor();
                         ?>
 
@@ -59,16 +58,15 @@
                             <select name="enseignant" class="form-select" id="enseignant" >
                                 <option value="">Sélectionner</option>
 
-                        <?php 
-                        require_once ('model/TeacherManager.php');
+                        <?php
+                        require_once 'model/TeacherManager.php';
                         $TeacherManager = new TeacherManager();
                         $req2 = $TeacherManager->getAllTeachers(present);
-                        while ($data2 = $req2->fetch())
-                                    {  
-                                        echo '
-                                            <option value="' . $data2['identifiant'] . '" >' . $data2['nom'] .' - ' . $data2['prenom'] . '</option>
-                                        ';  
-                                    }
+                        while ($data2 = $req2->fetch()) {
+                            echo '
+                                            <option value="'.$data2['identifiant'].'" >'.$data2['nom'].' - '.$data2['prenom'].'</option>
+                                        ';
+                        }
                                 $req2->closeCursor();
                         ?>
 

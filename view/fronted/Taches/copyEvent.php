@@ -1,11 +1,11 @@
 <?php ob_start(); ?>
 
    
-    <?php 
+    <?php
 
         $eventsManager = new eventsManager();
         $req = $eventsManager->getEventsById($identifiant);
-        
+
         $data = $req->fetch();
 
             $nom = $data['nom'];
@@ -17,17 +17,13 @@
             $nom_enseignant = $data['enseignant'];
             $identifiant_enseignant = $data['identifiant_enseignant'];
 
-
-
-
         $req->closeCursor();
 
-
-        require ("view/fronted/form/copyEventForm.php");
+        require 'view/fronted/form/copyEventForm.php';
 
     ?>
     
                     
 <?php $content = ob_get_clean(); ?>
-<?php require('view/fronted/template/template.php'); ?>
+<?php require 'view/fronted/template/template.php'; ?>
 

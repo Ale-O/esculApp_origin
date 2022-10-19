@@ -5,7 +5,7 @@
 
     <div class="row">
 
-    		<?php require('view/fronted/widget/carrousel.php'); ?>
+    		<?php require 'view/fronted/widget/carrousel.php'; ?>
 
     </div>
 
@@ -22,11 +22,9 @@
     
         <?php
 
+        require_once 'model/champsManager.php';
 
-
-        require_once ('model/champsManager.php');
-
-        require_once ('model/TeacherManager.php');
+        require_once 'model/TeacherManager.php';
         $TeacherManager = new TeacherManager();
         $req = $TeacherManager->countTeacher();
 
@@ -46,28 +44,23 @@
                </thead>
                <tbody>';
 
-                    while ($data = $req->fetch())
-                        {  
+                    while ($data = $req->fetch()) {
+                        $champsManager = new champsManager();
+                        $req1 = $champsManager->itemById('emploi', $data['emploi']);
+                        $items = $req1->fetchAll();
+                        $item = $items[0];
+                        $emploi = $item[0];
 
-                            $champsManager = new champsManager();
-                            $req1 = $champsManager->itemById('emploi',$data['emploi']);
-                            $items = $req1->fetchAll();
-                            $item = $items[0]; 
-                            $emploi = $item[0];
-
-
-                            echo '<tr>
+                        echo '<tr>
                         
-                        <td>' . $emploi . '</td>
-                        <td>' . $data['count(*)'] . '</td>
+                        <td>'.$emploi.'</td>
+                        <td>'.$data['count(*)'].'</td>
 
                             </tr>';
-                                        }
+                    }
                 echo '</tbody></table>';
 
-
                 $req->closeCursor();
-
 
         ?>
 
@@ -81,7 +74,7 @@
 
     <div class="col-8 themed-grid-col">
           
-            <?php require('view/fronted/widget/graphique.php'); ?>
+            <?php require 'view/fronted/widget/graphique.php'; ?>
 
 
     </div>
@@ -96,4 +89,4 @@
 
 
 <?php $content = ob_get_clean(); ?>
-<?php require('view/fronted/template/template.php'); ?>
+<?php require 'view/fronted/template/template.php'; ?>

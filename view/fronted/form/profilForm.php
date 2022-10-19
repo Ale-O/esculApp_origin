@@ -2,7 +2,7 @@
 
 <p>
     <label for="identifiant"></label>
-    <input type="hidden" name="identifiant" value="<?php echo $_SESSION['loggedUser'] ?>" />
+    <input type="hidden" name="identifiant" value="<?php echo $_SESSION['loggedUser']; ?>" />
 </p>
 
 

@@ -1,26 +1,19 @@
 <?php
 
-
-
-    require_once ('model/LoginManager.php');
+    require_once 'model/LoginManager.php';
     $LoginManager = new LoginManager();
     $req = $LoginManager->getAllLogin();
     $users = $req->fetchAll();
     $req->closeCursor();
 
-
 // Validation du formulaire
 
-if (isset($_POST['email']) &&  isset($_POST['password'])) {
-
+if (isset($_POST['email']) && isset($_POST['password'])) {
     foreach ($users as $user) {
-
         if (
             $user['email'] === $_POST['email'] &&
             $user['password'] === $_POST['password']
-
         ) {
-           
             $_SESSION['loggedUser'] = $user['identifiant'];
             $_SESSION['nom'] = $user['nom'];
             $_SESSION['prenom'] = $user['prenom'];
@@ -35,7 +28,7 @@ if (isset($_POST['email']) &&  isset($_POST['password'])) {
    Si utilisateur/trice est non identifié(e), on affiche le formulaire
 -->
 
-<?php if(!isset($_SESSION['loggedUser'])): ?>
+<?php if (!isset($_SESSION['loggedUser'])): ?>
 
 <main class="form-signin">
 <form action="index.php?" method="post">
@@ -43,7 +36,7 @@ if (isset($_POST['email']) &&  isset($_POST['password'])) {
 
     <!-- si message d'erreur on l'affiche -->
 
-    <?php if(isset($errorMessage)) : ?>
+    <?php if (isset($errorMessage)) : ?>
 
         <div class="alert alert-danger" role="alert">
             <?php echo $errorMessage; ?>

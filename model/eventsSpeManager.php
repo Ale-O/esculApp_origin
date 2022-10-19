@@ -1,94 +1,74 @@
 <?php
 
-require_once ('model/Manager.php');
-
-
-
+require_once 'model/Manager.php';
 
 class eventsSpeManager extends mgmtHU\Model\Manager
 {
-   
-    
-    public function getAllEventsSpe($typeEvent,$corbeille)
-    {   
-
-
+    public function getAllEventsSpe($typeEvent, $corbeille)
+    {
         $select = $this->selectEventsSpeManager($typeEvent);
-        $etatCorbeille = ($corbeille == "corbeille") ? 'ev.Corbeille is not null' : 'ev.Corbeille is null';
+        $etatCorbeille = ($corbeille == 'corbeille') ? 'ev.Corbeille is not null' : 'ev.Corbeille is null';
 
         $db = $this->dbConnect();
         $allEventsSpe = $db->prepare('
             '.$select.'
             WHERE '.$etatCorbeille.'
             ORDER BY debut2
-        '); 
-        $allEventsSpe->execute(array(
+        ');
+        $allEventsSpe->execute([
+        ]);
 
-        ));
         return $allEventsSpe;
     }
 
-
-public function getEventsSpe($typeEvent,$corbeille,$nom,$type,$contenu,$debut,$fin,$nomEnseignant,$prenomEnseignant,$parametre1,$parametre2,$parametre3)
+    public function getEventsSpe($typeEvent, $corbeille, $nom, $type, $contenu, $debut, $fin, $nomEnseignant, $prenomEnseignant, $parametre1, $parametre2, $parametre3)
     {
-
-
-
-
-
         $select = $this->selectEventsSpeManager($typeEvent);
-        $etatCorbeille = ($corbeille == "corbeille") ? 'ev.Corbeille is not null' : 'ev.Corbeille is null';
+        $etatCorbeille = ($corbeille == 'corbeille') ? 'ev.Corbeille is not null' : 'ev.Corbeille is null';
 
-        $nom_vide = ($nom == "") ? 'OR ev.nom != \'\' OR ev.nom is NULL' : "";
-        $type_vide = ($type == "") ? 'OR t.intitule != \'\' OR t.intitule is NULL' : "";
-        $contenu_vide = ($contenu == "") ? 'OR ev.contenu != \'\' OR ev.contenu is NULL' : "";
-        $debut_vide = ($debut == "") ? 'OR ev.debut != \'\' OR ev.debut is NULL' : "";
-        $fin_vide = ($fin == "") ? 'OR ev.fin != \'\' OR ev.fin is NULL' : "";
-        $enseignant_vide = ($nomEnseignant == "") ? 'OR e.nom != \'\' OR e.nom is NULL' : "";
-        $prenom_enseignant_vide = ($prenomEnseignant == "") ? 'OR e.prenom != \'\' OR e.prenom is NULL' : "";
+        $nom_vide = ($nom == '') ? 'OR ev.nom != \'\' OR ev.nom is NULL' : '';
+        $type_vide = ($type == '') ? 'OR t.intitule != \'\' OR t.intitule is NULL' : '';
+        $contenu_vide = ($contenu == '') ? 'OR ev.contenu != \'\' OR ev.contenu is NULL' : '';
+        $debut_vide = ($debut == '') ? 'OR ev.debut != \'\' OR ev.debut is NULL' : '';
+        $fin_vide = ($fin == '') ? 'OR ev.fin != \'\' OR ev.fin is NULL' : '';
+        $enseignant_vide = ($nomEnseignant == '') ? 'OR e.nom != \'\' OR e.nom is NULL' : '';
+        $prenom_enseignant_vide = ($prenomEnseignant == '') ? 'OR e.prenom != \'\' OR e.prenom is NULL' : '';
 
+        switch ($typeEvent) {
+                case 'Taches':
 
-            switch ($typeEvent)
-            {
-                case 'Taches' :
-
-                    $thematiqueTaches_vide = ($parametre1 == "") ? 'OR th.intitule != \'\' OR th.intitule is NULL' : "";
+                    $thematiqueTaches_vide = ($parametre1 == '') ? 'OR th.intitule != \'\' OR th.intitule is NULL' : '';
 
                 break;
 
+                case 'Revision_effectifs':
 
-                case 'Revision_effectifs' :
+                    $emploi_cible_vide = ($parametre1 == '') ? 'OR em.intitule != \'\' OR em.intitule is NULL' : '';
 
-                    $emploi_cible_vide = ($parametre1 == "") ? 'OR em.intitule != \'\' OR em.intitule is NULL' : "";
-
-                    $support_cible_vide = ($parametre2 == "") ? 'OR su.numero_formate != \'\' OR su.numero_formate is NULL' : "";
-
-                break;
-
-
-                case 'Absence_departs' :
-
-                    $absence_depart_arrivee_vide = ($parametre1 == "") ? 'OR ad.etat != \'\' OR ad.etat is NULL' : "";
+                    $support_cible_vide = ($parametre2 == '') ? 'OR su.numero_formate != \'\' OR su.numero_formate is NULL' : '';
 
                 break;
 
+                case 'Absence_departs':
 
-                case 'Avancements' :
-
-                    $avis_avancement_vide = ($parametre1 == "") ? 'OR aa.intitule != \'\' OR aa.intitule is NULL' : "";
-
-                    $grade_cible_vide = ($parametre2 == "") ? 'OR ev.grade_cible != \'\' OR ev.grade_cible is NULL' : "";
+                    $absence_depart_arrivee_vide = ($parametre1 == '') ? 'OR ad.etat != \'\' OR ad.etat is NULL' : '';
 
                 break;
 
+                case 'Avancements':
 
-                case 'Primes_hr' :
+                    $avis_avancement_vide = ($parametre1 == '') ? 'OR aa.intitule != \'\' OR aa.intitule is NULL' : '';
 
-                    $nature_primes_hr_vide = ($parametre1 == "") ? 'OR np.intitule != \'\' OR np.intitule is NULL' : "";
+                    $grade_cible_vide = ($parametre2 == '') ? 'OR ev.grade_cible != \'\' OR ev.grade_cible is NULL' : '';
 
-                    $montant_vide = ($parametre2 == "") ? 'OR ev.montant != \'\' OR ev.montant is NULL' : "";
-                    $heures_vide = ($parametre3 == "") ? 'OR ev.heures != \'\' OR ev.heures is NULL' : "";
+                break;
 
+                case 'Primes_hr':
+
+                    $nature_primes_hr_vide = ($parametre1 == '') ? 'OR np.intitule != \'\' OR np.intitule is NULL' : '';
+
+                    $montant_vide = ($parametre2 == '') ? 'OR ev.montant != \'\' OR ev.montant is NULL' : '';
+                    $heures_vide = ($parametre3 == '') ? 'OR ev.heures != \'\' OR ev.heures is NULL' : '';
 
                 break;
 
@@ -96,14 +76,8 @@ public function getEventsSpe($typeEvent,$corbeille,$nom,$type,$contenu,$debut,$f
                     throw new Exception('Aucun typeEvent trouvé pour filtre list');
             }
 
-
-
-
-
-
-        switch ($typeEvent)
-        {
-            case 'Taches' :
+        switch ($typeEvent) {
+            case 'Taches':
 
                 $whereEventsSpeManager = '
                     (ev.nom LIKE :nom '.$nom_vide.') AND (t.intitule LIKE :type '.$type_vide.') AND (ev.contenu LIKE :contenu '.$contenu_vide.') AND (ev.debut >= :debut '.$debut_vide.') AND (ev.fin <= :fin '.$fin_vide.') AND (e.nom LIKE :enseignant '.$enseignant_vide.') AND (e.prenom LIKE :prenomEnseignant '.$prenom_enseignant_vide.')
@@ -112,12 +86,9 @@ public function getEventsSpe($typeEvent,$corbeille,$nom,$type,$contenu,$debut,$f
 
                 ';
 
-
-
             break;
 
-
-            case 'Revision_effectifs' :
+            case 'Revision_effectifs':
 
                 $whereEventsSpeManager = '
                     (ev.nom LIKE :nom '.$nom_vide.') AND (t.intitule LIKE :type '.$type_vide.') AND (ev.contenu LIKE :contenu '.$contenu_vide.') AND (ev.debut >= :debut '.$debut_vide.') AND (ev.fin <= :fin '.$fin_vide.') AND (e.nom LIKE :enseignant '.$enseignant_vide.') AND (e.prenom LIKE :prenomEnseignant '.$prenom_enseignant_vide.')
@@ -128,12 +99,9 @@ public function getEventsSpe($typeEvent,$corbeille,$nom,$type,$contenu,$debut,$f
 
                 ';
 
-
-
             break;
 
-
-            case 'Absence_departs' :
+            case 'Absence_departs':
 
                 $whereEventsSpeManager = '
                     (ev.nom LIKE :nom '.$nom_vide.') AND (t.intitule LIKE :type '.$type_vide.') AND (ev.contenu LIKE :contenu '.$contenu_vide.') AND (ev.debut >= :debut '.$debut_vide.') AND (ev.fin <= :fin '.$fin_vide.') AND (e.nom LIKE :enseignant '.$enseignant_vide.') AND (e.prenom LIKE :prenomEnseignant '.$prenom_enseignant_vide.')
@@ -143,12 +111,9 @@ public function getEventsSpe($typeEvent,$corbeille,$nom,$type,$contenu,$debut,$f
 
                 ';
 
-
-
             break;
 
-
-            case 'Avancements' :
+            case 'Avancements':
 
                 $whereEventsSpeManager = '
                     (ev.nom LIKE :nom '.$nom_vide.') AND (t.intitule LIKE :type '.$type_vide.') AND (ev.contenu LIKE :contenu '.$contenu_vide.') AND (ev.debut >= :debut '.$debut_vide.') AND (ev.fin <= :fin '.$fin_vide.') AND (e.nom LIKE :enseignant '.$enseignant_vide.') AND (e.prenom LIKE :prenomEnseignant '.$prenom_enseignant_vide.')
@@ -160,12 +125,9 @@ public function getEventsSpe($typeEvent,$corbeille,$nom,$type,$contenu,$debut,$f
 
                 ';
 
-
-
             break;
 
-
-            case 'Primes_hr' :
+            case 'Primes_hr':
 
                 $whereEventsSpeManager = '
                     (ev.nom LIKE :nom '.$nom_vide.') AND (t.intitule LIKE :type '.$type_vide.') AND (ev.contenu LIKE :contenu '.$contenu_vide.') AND (ev.debut >= :debut '.$debut_vide.') AND (ev.fin <= :fin '.$fin_vide.') AND (e.nom LIKE :enseignant '.$enseignant_vide.') AND (e.prenom LIKE :prenomEnseignant '.$prenom_enseignant_vide.')
@@ -179,18 +141,11 @@ public function getEventsSpe($typeEvent,$corbeille,$nom,$type,$contenu,$debut,$f
 
                 ';
 
-
-
             break;
-
 
             default:
                 throw new Exception('Aucune close where sql trouvé');
         }
-
-
-
-
 
         $db = $this->dbConnect();
         $allEventsSpe = $db->prepare('
@@ -201,131 +156,103 @@ public function getEventsSpe($typeEvent,$corbeille,$nom,$type,$contenu,$debut,$f
 
         ');
 
+        switch ($typeEvent) {
+            case 'Taches':
 
-
-
-        switch ($typeEvent)
-        {
-            case 'Taches' :
-
-
-                $allEventsSpe->execute(array(
-                    'nom'=> "%".$nom."%",
-                    'type'=> "%".$type."%",
-                    'contenu'=> "%".$contenu."%",
-                    'debut'=> $debut,
-                    'fin'=> $fin,
-                    'enseignant'=> "%".$nomEnseignant."%",
-                    'prenomEnseignant'=> "%".$prenomEnseignant."%",
+                $allEventsSpe->execute([
+                    'nom' => '%'.$nom.'%',
+                    'type' => '%'.$type.'%',
+                    'contenu' => '%'.$contenu.'%',
+                    'debut' => $debut,
+                    'fin' => $fin,
+                    'enseignant' => '%'.$nomEnseignant.'%',
+                    'prenomEnseignant' => '%'.$prenomEnseignant.'%',
 
                     'thematique' => $parametre1,
-
-                    ));
+                    ]);
 
             break;
 
+            case 'Revision_effectifs':
 
-            case 'Revision_effectifs' :
-
-
-                $allEventsSpe->execute(array(
-                    'nom'=> "%".$nom."%",
-                    'type'=> "%".$type."%",
-                    'contenu'=> "%".$contenu."%",
-                    'debut'=> $debut,
-                    'fin'=> $fin,
-                    'enseignant'=> "%".$nomEnseignant."%",
-                    'prenomEnseignant'=> "%".$prenomEnseignant."%",
+                $allEventsSpe->execute([
+                    'nom' => '%'.$nom.'%',
+                    'type' => '%'.$type.'%',
+                    'contenu' => '%'.$contenu.'%',
+                    'debut' => $debut,
+                    'fin' => $fin,
+                    'enseignant' => '%'.$nomEnseignant.'%',
+                    'prenomEnseignant' => '%'.$prenomEnseignant.'%',
 
                     'emploi_cible' => $parametre1,
 
                     'support_cible' => $parametre2,
-
-                    ));
+                    ]);
 
             break;
 
+            case 'Absence_departs':
 
-            case 'Absence_departs' :
-
-
-                $allEventsSpe->execute(array(
-                    'nom'=> "%".$nom."%",
-                    'type'=> "%".$type."%",
-                    'contenu'=> "%".$contenu."%",
-                    'debut'=> $debut,
-                    'fin'=> $fin,
-                    'enseignant'=> "%".$nomEnseignant."%",
-                    'prenomEnseignant'=> "%".$prenomEnseignant."%",
+                $allEventsSpe->execute([
+                    'nom' => '%'.$nom.'%',
+                    'type' => '%'.$type.'%',
+                    'contenu' => '%'.$contenu.'%',
+                    'debut' => $debut,
+                    'fin' => $fin,
+                    'enseignant' => '%'.$nomEnseignant.'%',
+                    'prenomEnseignant' => '%'.$prenomEnseignant.'%',
 
                     'absence_depart_arrivee' => $parametre1,
-                    ));
+                    ]);
 
             break;
 
+            case 'Avancements':
 
-            case 'Avancements' :
-
-
-                $allEventsSpe->execute(array(
-                    'nom'=> "%".$nom."%",
-                    'type'=> "%".$type."%",
-                    'contenu'=> "%".$contenu."%",
-                    'debut'=> $debut,
-                    'fin'=> $fin,
-                    'enseignant'=> "%".$nomEnseignant."%",
-                    'prenomEnseignant'=> "%".$prenomEnseignant."%",
+                $allEventsSpe->execute([
+                    'nom' => '%'.$nom.'%',
+                    'type' => '%'.$type.'%',
+                    'contenu' => '%'.$contenu.'%',
+                    'debut' => $debut,
+                    'fin' => $fin,
+                    'enseignant' => '%'.$nomEnseignant.'%',
+                    'prenomEnseignant' => '%'.$prenomEnseignant.'%',
 
                     'avis_avancement' => $parametre1,
 
                     'grade_cible' => $parametre2,
-
-                    ));
+                    ]);
 
             break;
 
+            case 'Primes_hr':
 
-            case 'Primes_hr' :
-
-
-                $allEventsSpe->execute(array(
-                    'nom'=> "%".$nom."%",
-                    'type'=> "%".$type."%",
-                    'contenu'=> "%".$contenu."%",
-                    'debut'=> $debut,
-                    'fin'=> $fin,
-                    'enseignant'=> "%".$nomEnseignant."%",
-                    'prenomEnseignant'=> "%".$prenomEnseignant."%",
+                $allEventsSpe->execute([
+                    'nom' => '%'.$nom.'%',
+                    'type' => '%'.$type.'%',
+                    'contenu' => '%'.$contenu.'%',
+                    'debut' => $debut,
+                    'fin' => $fin,
+                    'enseignant' => '%'.$nomEnseignant.'%',
+                    'prenomEnseignant' => '%'.$prenomEnseignant.'%',
 
                     'nature_primes_hr' => $parametre1,
 
                     'montant' => $parametre2,
                     'heures' => $parametre3,
-
-                    ));
+                    ]);
 
             break;
-
 
             default:
                 throw new Exception('Aucune close where sql trouvé');
         }
 
-
- 
         return $allEventsSpe;
     }
 
-
-
-
-
-
-
-     public function getEventsSpeById($typeEvent,$identifiant)
+    public function getEventsSpeById($typeEvent, $identifiant)
     {
-
-
         $select = $this->selectEventsSpeManager($typeEvent);
 
         $db = $this->dbConnect();
@@ -334,23 +261,20 @@ public function getEventsSpe($typeEvent,$corbeille,$nom,$type,$contenu,$debut,$f
             WHERE ev.identifiant = :identifiant
         ');
 
-        $eventSpe->execute(array(
-            'identifiant'=> $identifiant
-            )); 
+        $eventSpe->execute([
+            'identifiant' => $identifiant,
+            ]);
+
         return $eventSpe;
     }
 
-
-
-
-     public function getEventsSpeRevByLastDateFin($typeEvent, $corbeille, $identifiant_enseignant)
+    public function getEventsSpeRevByLastDateFin($typeEvent, $corbeille, $identifiant_enseignant)
     {
-
-        $today = date("Y-m-d");
+        $today = date('Y-m-d');
 
         $select = $this->selectEventsSpeManager($typeEvent);
 
-        $etatCorbeille = ($corbeille == "corbeille") ? 'ev.Corbeille is not null' : 'ev.Corbeille is null';        
+        $etatCorbeille = ($corbeille == 'corbeille') ? 'ev.Corbeille is not null' : 'ev.Corbeille is null';
 
         $db = $this->dbConnect();
         $eventSpe = $db->prepare('
@@ -359,25 +283,21 @@ public function getEventsSpe($typeEvent,$corbeille,$nom,$type,$contenu,$debut,$f
             ORDER BY fin
         ');
 
-        $eventSpe->execute(array(
-            'identifiant_enseignant'=> $identifiant_enseignant,
-            'today'=> $today
-            )); 
+        $eventSpe->execute([
+            'identifiant_enseignant' => $identifiant_enseignant,
+            'today' => $today,
+            ]);
+
         return $eventSpe;
     }
 
-
-
-
-
-     public function getEventsSpeAbsByLastDateFin($typeEvent, $corbeille, $identifiant_enseignant)
+    public function getEventsSpeAbsByLastDateFin($typeEvent, $corbeille, $identifiant_enseignant)
     {
-
-        $today = date("Y-m-d");
+        $today = date('Y-m-d');
 
         $select = $this->selectEventsSpeManager($typeEvent);
 
-        $etatCorbeille = ($corbeille == "corbeille") ? 'ev.Corbeille is not null' : 'ev.Corbeille is null';        
+        $etatCorbeille = ($corbeille == 'corbeille') ? 'ev.Corbeille is not null' : 'ev.Corbeille is null';
 
         $db = $this->dbConnect();
         $eventSpe = $db->prepare('
@@ -386,29 +306,23 @@ public function getEventsSpe($typeEvent,$corbeille,$nom,$type,$contenu,$debut,$f
             ORDER BY ev.debut
         ');
 
-        $eventSpe->execute(array(
-            'identifiant_enseignant'=> $identifiant_enseignant,
-            'today'=> $today
-            )); 
+        $eventSpe->execute([
+            'identifiant_enseignant' => $identifiant_enseignant,
+            'today' => $today,
+            ]);
+
         return $eventSpe;
     }
 
-
-
-
-
-     public function getEventsSpeAbsByDates($typeEvent, $corbeille, $debut)
+    public function getEventsSpeAbsByDates($typeEvent, $corbeille, $debut)
     {
-
-
         $select = $this->selectEventsSpeManager($typeEvent);
 
-        $etatCorbeille = ($corbeille == "corbeille") ? 'ev.Corbeille is not null' : 'ev.Corbeille is null';       
+        $etatCorbeille = ($corbeille == 'corbeille') ? 'ev.Corbeille is not null' : 'ev.Corbeille is null';
 
-        $debut_vide = ($debut == "") ? 'OR ev.debut != \'\' OR ev.debut is NULL' : "";
+        $debut_vide = ($debut == '') ? 'OR ev.debut != \'\' OR ev.debut is NULL' : '';
 
         $db = $this->dbConnect();
-
 
         $eventSpe = $db->prepare('
             '.$select.'
@@ -448,51 +362,39 @@ public function getEventsSpe($typeEvent,$corbeille,$nom,$type,$contenu,$debut,$f
             ORDER BY fin
         ');
 
-
-        $eventSpe->execute(array(
-            'debut'=> $debut
+        $eventSpe->execute([
+            'debut' => $debut,
             // 'fin'=> $fin->format('Y-m-d H:i:s'),
-            )); 
+            ]);
+
         return $eventSpe;
-        
     }
 
-
-
-     public function getEventsSpeRevLiberationSupport($typeEvent, $corbeille, $debut)
+    public function getEventsSpeRevLiberationSupport($typeEvent, $corbeille, $debut)
     {
-
         $select = $this->selectEventsSpeManager($typeEvent);
 
-        $etatCorbeille = ($corbeille == "corbeille") ? 'ev.Corbeille is not null' : 'ev.Corbeille is null';
+        $etatCorbeille = ($corbeille == 'corbeille') ? 'ev.Corbeille is not null' : 'ev.Corbeille is null';
 
-        $debut_vide = ($debut == "") ? 'OR ev.debut != \'\' OR ev.debut is NULL' : "";
+        $debut_vide = ($debut == '') ? 'OR ev.debut != \'\' OR ev.debut is NULL' : '';
 
         $db = $this->dbConnect();
-
 
         $eventSpe = $db->prepare('
             '.$select.'
             WHERE '.$etatCorbeille.' AND (e.emploi = 2 OR e.emploi = 15 OR e.emploi = 6 OR e.emploi = 4) AND ADDDATE(ev.fin, INTERVAL 1 YEAR) >= :debut
         ');
 
+        $eventSpe->execute([
+            'debut' => $debut,
+            ]);
 
-        $eventSpe->execute(array(
-            'debut'=> $debut
-            )); 
         return $eventSpe;
-        
     }
 
-
-
-
-     public function getCountEventsAjax()
+    public function getCountEventsAjax()
     {
-
-
         $db = $this->dbConnect();
-
 
         $eventSpe = $db->prepare('
 
@@ -503,35 +405,23 @@ public function getEventsSpe($typeEvent,$corbeille,$nom,$type,$contenu,$debut,$f
 
         ');
 
+        $eventSpe->execute([
+            ]);
 
-        $eventSpe->execute(array(
-
-            )); 
         return $eventSpe;
-        
     }
 
-
-
-
-
-
-
-    public function createEventSpe($typeEvent,$nom,$type,$contenu,$debut,$fin,$enseignant,$parametre1,$parametre2,$parametre3)
+    public function createEventSpe($typeEvent, $nom, $type, $contenu, $debut, $fin, $enseignant, $parametre1, $parametre2, $parametre3)
     {
-
-
-
-        switch ($typeEvent)
-        {
-            case 'Taches' :
+        switch ($typeEvent) {
+            case 'Taches':
 
                 $db = $this->dbConnect();
                 $newEventSpe = $db->prepare('INSERT INTO evenement_taches (identifiant, nom, type_evenement, contenu, debut, fin, enseignant, thematique) 
 
                 VALUES (NULL, :nom, :type_evenement, :contenu, :debut, :fin, :enseignant, :thematique);');
 
-                $newEventSpe->execute(array(
+                $newEventSpe->execute([
                     'nom' => $nom,
                     'type_evenement' => $type,
                     'contenu' => $contenu,
@@ -540,20 +430,18 @@ public function getEventsSpe($typeEvent,$corbeille,$nom,$type,$contenu,$debut,$f
                     'enseignant' => $enseignant,
 
                     'thematique' => $parametre1,
-
-                    ));
+                    ]);
 
             break;
 
-
-            case 'Revision_effectifs' :
+            case 'Revision_effectifs':
 
                 $db = $this->dbConnect();
                 $newEventSpe = $db->prepare('INSERT INTO evenement_revision_effectifs (identifiant, nom, type_evenement, contenu, debut, fin, enseignant, emploi_cible, support_cible) 
 
                 VALUES (NULL, :nom, :type_evenement, :contenu, :debut, :fin, :enseignant, :emploi_cible, :support_cible);');
 
-                $newEventSpe->execute(array(
+                $newEventSpe->execute([
                     'nom' => $nom,
                     'type_evenement' => $type,
                     'contenu' => $contenu,
@@ -564,21 +452,18 @@ public function getEventsSpe($typeEvent,$corbeille,$nom,$type,$contenu,$debut,$f
                     'emploi_cible' => $parametre1,
 
                     'support_cible' => $parametre2,
-
-                    ));
+                    ]);
 
             break;
 
-
-
-            case 'Absence_departs' :
+            case 'Absence_departs':
 
                 $db = $this->dbConnect();
                 $newEventSpe = $db->prepare('INSERT INTO evenement_absence_departs (identifiant, nom, type_evenement, contenu, debut, fin, enseignant, absence_depart_arrivee) 
 
                 VALUES (NULL, :nom, :type_evenement, :contenu, :debut, :fin, :enseignant, :absence_depart_arrivee);');
 
-                $newEventSpe->execute(array(
+                $newEventSpe->execute([
                     'nom' => $nom,
                     'type_evenement' => $type,
                     'contenu' => $contenu,
@@ -587,20 +472,18 @@ public function getEventsSpe($typeEvent,$corbeille,$nom,$type,$contenu,$debut,$f
                     'enseignant' => $enseignant,
 
                     'absence_depart_arrivee' => $parametre1,
-                    ));
+                    ]);
 
             break;
 
-
-
-            case 'Avancements' :
+            case 'Avancements':
 
                 $db = $this->dbConnect();
                 $newEventSpe = $db->prepare('INSERT INTO evenement_avancements (identifiant, nom, type_evenement, contenu, debut, fin, enseignant, avis, grade_cible) 
 
                 VALUES (NULL, :nom, :type_evenement, :contenu, :debut, :fin, :enseignant, :avis_avancement, :grade_cible);');
 
-                $newEventSpe->execute(array(
+                $newEventSpe->execute([
                     'nom' => $nom,
                     'type_evenement' => $type,
                     'contenu' => $contenu,
@@ -611,21 +494,18 @@ public function getEventsSpe($typeEvent,$corbeille,$nom,$type,$contenu,$debut,$f
                     'avis_avancement' => $parametre1,
 
                     'grade_cible' => $parametre2,
-
-                    ));
+                    ]);
 
             break;
 
-
-
-            case 'Primes_hr' :
+            case 'Primes_hr':
 
                 $db = $this->dbConnect();
                 $newEventSpe = $db->prepare('INSERT INTO evenement_primes_hr (identifiant, nom, type_evenement, contenu, debut, fin, enseignant, nature, montant, heures) 
 
                 VALUES (NULL, :nom, :type_evenement, :contenu, :debut, :fin, :enseignant, :nature_primes_hr, :montant, :heures);');
 
-                $newEventSpe->execute(array(
+                $newEventSpe->execute([
                     'nom' => $nom,
                     'type_evenement' => $type,
                     'contenu' => $contenu,
@@ -637,34 +517,21 @@ public function getEventsSpe($typeEvent,$corbeille,$nom,$type,$contenu,$debut,$f
 
                     'montant' => $parametre2,
                     'heures' => $parametre3,
-
-
-                    ));
+                    ]);
 
             break;
-
-
 
             default:
                 throw new Exception('Aucun typeEvent trouvé pour création');
         }
 
-
-
-
-
         return $newEventSpe;
     }
-    
 
-
-    public function modifEventSpe($typeEvent,$identifiant,$nom,$type,$contenu,$debut,$fin,$enseignant,$parametre1,$parametre2,$parametre3)
+    public function modifEventSpe($typeEvent, $identifiant, $nom, $type, $contenu, $debut, $fin, $enseignant, $parametre1, $parametre2, $parametre3)
     {
-
-
-        switch ($typeEvent)
-        {
-            case 'Taches' :
+        switch ($typeEvent) {
+            case 'Taches':
 
                 $db = $this->dbConnect();
                 $modifEventSpe = $db->prepare('
@@ -689,7 +556,7 @@ public function getEventsSpe($typeEvent,$corbeille,$nom,$type,$contenu,$debut,$f
 
                 ');
 
-                $modifEventSpe->execute(array(
+                $modifEventSpe->execute([
                     'identifiant' => $identifiant,
                     'nom' => $nom,
                     'type' => $type,
@@ -699,13 +566,11 @@ public function getEventsSpe($typeEvent,$corbeille,$nom,$type,$contenu,$debut,$f
                     'enseignant' => $enseignant,
 
                     'thematique' => $parametre1,
-
-                    ));
+                    ]);
 
             break;
 
-
-            case 'Revision_effectifs' :
+            case 'Revision_effectifs':
 
                 $db = $this->dbConnect();
                 $modifEventSpe = $db->prepare('
@@ -732,7 +597,7 @@ public function getEventsSpe($typeEvent,$corbeille,$nom,$type,$contenu,$debut,$f
 
                 ');
 
-                $modifEventSpe->execute(array(
+                $modifEventSpe->execute([
                     'identifiant' => $identifiant,
                     'nom' => $nom,
                     'type' => $type,
@@ -744,13 +609,11 @@ public function getEventsSpe($typeEvent,$corbeille,$nom,$type,$contenu,$debut,$f
                     'emploi_cible' => $parametre1,
 
                     'support_cible' => $parametre2,
-
-                    ));
+                    ]);
 
             break;
 
-
-            case 'Absence_departs' :
+            case 'Absence_departs':
 
                 $db = $this->dbConnect();
                 $modifEventSpe = $db->prepare('
@@ -775,7 +638,7 @@ public function getEventsSpe($typeEvent,$corbeille,$nom,$type,$contenu,$debut,$f
 
                 ');
 
-                $modifEventSpe->execute(array(
+                $modifEventSpe->execute([
                     'identifiant' => $identifiant,
                     'nom' => $nom,
                     'type' => $type,
@@ -785,12 +648,11 @@ public function getEventsSpe($typeEvent,$corbeille,$nom,$type,$contenu,$debut,$f
                     'enseignant' => $enseignant,
 
                     'absence_depart_arrivee' => $parametre1,
-                    ));
+                    ]);
 
             break;
 
-
-            case 'Avancements' :
+            case 'Avancements':
 
                 $db = $this->dbConnect();
                 $modifEventSpe = $db->prepare('
@@ -817,7 +679,7 @@ public function getEventsSpe($typeEvent,$corbeille,$nom,$type,$contenu,$debut,$f
 
                 ');
 
-                $modifEventSpe->execute(array(
+                $modifEventSpe->execute([
                     'identifiant' => $identifiant,
                     'nom' => $nom,
                     'type' => $type,
@@ -829,13 +691,11 @@ public function getEventsSpe($typeEvent,$corbeille,$nom,$type,$contenu,$debut,$f
                     'avis_avancement' => $parametre1,
 
                     'grade_cible' => $parametre2,
-
-                    ));
+                    ]);
 
             break;
 
-
-            case 'Primes_hr' :
+            case 'Primes_hr':
 
                 $db = $this->dbConnect();
                 $modifEventSpe = $db->prepare('
@@ -863,7 +723,7 @@ public function getEventsSpe($typeEvent,$corbeille,$nom,$type,$contenu,$debut,$f
 
                 ');
 
-                $modifEventSpe->execute(array(
+                $modifEventSpe->execute([
                     'identifiant' => $identifiant,
                     'nom' => $nom,
                     'type' => $type,
@@ -876,33 +736,21 @@ public function getEventsSpe($typeEvent,$corbeille,$nom,$type,$contenu,$debut,$f
 
                     'montant' => $parametre2,
                     'heures' => $parametre3,
-
-                    
-                    ));
+                    ]);
 
             break;
-
 
             default:
                 throw new Exception('Aucun typeEvent trouvé pour modification');
         }
 
-
-
-
         return $modifEventSpe;
     }
 
-
-
-public function corbeilleEventSpe($typeEvent,$identifiant)
+    public function corbeilleEventSpe($typeEvent, $identifiant)
     {
-
-
-
-        switch ($typeEvent)
-        {
-            case 'Taches' :
+        switch ($typeEvent) {
+            case 'Taches':
 
                 $db = $this->dbConnect();
                 $corbeilleEventSpe = $db->prepare('
@@ -917,14 +765,13 @@ public function corbeilleEventSpe($typeEvent,$identifiant)
 
                 ');
 
-                $corbeilleEventSpe->execute(array(
+                $corbeilleEventSpe->execute([
                     'identifiant' => $identifiant,
-                    ));
+                    ]);
 
             break;
 
-
-            case 'Revision_effectifs' :
+            case 'Revision_effectifs':
 
                 $db = $this->dbConnect();
                 $corbeilleEventSpe = $db->prepare('
@@ -939,14 +786,13 @@ public function corbeilleEventSpe($typeEvent,$identifiant)
 
                 ');
 
-                $corbeilleEventSpe->execute(array(
+                $corbeilleEventSpe->execute([
                     'identifiant' => $identifiant,
-                    ));
+                    ]);
 
             break;
 
-
-            case 'Absence_departs' :
+            case 'Absence_departs':
 
                 $db = $this->dbConnect();
                 $corbeilleEventSpe = $db->prepare('
@@ -961,14 +807,13 @@ public function corbeilleEventSpe($typeEvent,$identifiant)
 
                 ');
 
-                $corbeilleEventSpe->execute(array(
+                $corbeilleEventSpe->execute([
                     'identifiant' => $identifiant,
-                    ));
+                    ]);
 
             break;
 
-
-            case 'Avancements' :
+            case 'Avancements':
 
                 $db = $this->dbConnect();
                 $corbeilleEventSpe = $db->prepare('
@@ -983,14 +828,13 @@ public function corbeilleEventSpe($typeEvent,$identifiant)
 
                 ');
 
-                $corbeilleEventSpe->execute(array(
+                $corbeilleEventSpe->execute([
                     'identifiant' => $identifiant,
-                    ));
+                    ]);
 
             break;
 
-
-            case 'Primes_hr' :
+            case 'Primes_hr':
 
                 $db = $this->dbConnect();
                 $corbeilleEventSpe = $db->prepare('
@@ -1005,34 +849,23 @@ public function corbeilleEventSpe($typeEvent,$identifiant)
 
                 ');
 
-                $corbeilleEventSpe->execute(array(
+                $corbeilleEventSpe->execute([
                     'identifiant' => $identifiant,
-                    ));
+                    ]);
 
             break;
-
-
-
 
             default:
                 throw new Exception('Aucun typeEvent trouvé pour corbeille');
         }
 
-
-
-
         return $corbeilleEventSpe;
     }
 
-
-public function restoreEventSpe($typeEvent,$identifiant)
+    public function restoreEventSpe($typeEvent, $identifiant)
     {
-
-
-
-        switch ($typeEvent)
-        {
-            case 'Taches' :
+        switch ($typeEvent) {
+            case 'Taches':
 
                 $db = $this->dbConnect();
                 $restoreEventSpe = $db->prepare('
@@ -1047,14 +880,13 @@ public function restoreEventSpe($typeEvent,$identifiant)
 
                 ');
 
-                $restoreEventSpe->execute(array(
+                $restoreEventSpe->execute([
                     'identifiant' => $identifiant,
-                    ));
+                    ]);
 
             break;
 
-
-            case 'Revision_effectifs' :
+            case 'Revision_effectifs':
 
                 $db = $this->dbConnect();
                 $restoreEventSpe = $db->prepare('
@@ -1069,14 +901,13 @@ public function restoreEventSpe($typeEvent,$identifiant)
 
                 ');
 
-                $restoreEventSpe->execute(array(
+                $restoreEventSpe->execute([
                     'identifiant' => $identifiant,
-                    ));
+                    ]);
 
             break;
 
-
-            case 'Absence_departs' :
+            case 'Absence_departs':
 
                 $db = $this->dbConnect();
                 $restoreEventSpe = $db->prepare('
@@ -1091,14 +922,13 @@ public function restoreEventSpe($typeEvent,$identifiant)
 
                 ');
 
-                $restoreEventSpe->execute(array(
+                $restoreEventSpe->execute([
                     'identifiant' => $identifiant,
-                    ));
+                    ]);
 
             break;
 
-
-            case 'Avancements' :
+            case 'Avancements':
 
                 $db = $this->dbConnect();
                 $restoreEventSpe = $db->prepare('
@@ -1113,14 +943,13 @@ public function restoreEventSpe($typeEvent,$identifiant)
 
                 ');
 
-                $restoreEventSpe->execute(array(
+                $restoreEventSpe->execute([
                     'identifiant' => $identifiant,
-                    ));
+                    ]);
 
             break;
 
-
-            case 'Primes_hr' :
+            case 'Primes_hr':
 
                 $db = $this->dbConnect();
                 $restoreEventSpe = $db->prepare('
@@ -1135,26 +964,16 @@ public function restoreEventSpe($typeEvent,$identifiant)
 
                 ');
 
-                $restoreEventSpe->execute(array(
+                $restoreEventSpe->execute([
                     'identifiant' => $identifiant,
-                    ));
+                    ]);
 
             break;
-
 
             default:
                 throw new Exception('Aucun typeEvent trouvé pour restore');
         }
 
-
-
-
         return $restoreEventSpe;
     }
-
-
-
-
-
-    
 }

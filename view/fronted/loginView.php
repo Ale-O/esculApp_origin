@@ -40,7 +40,7 @@
           
 
     <!-- Inclusion du formulaire de connexion -->
-    <?php require ("view/fronted/form/loginForm.php"); ?>
+    <?php require 'view/fronted/form/loginForm.php'; ?>
 
 
 
@@ -63,4 +63,4 @@
 
 
 <?php $content = ob_get_clean(); ?>
-<?php require('view/fronted/template/templateLogin.php'); ?>
+<?php require 'view/fronted/template/templateLogin.php'; ?>

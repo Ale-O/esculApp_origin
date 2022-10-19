@@ -1,4 +1,4 @@
-<form action="index.php?action=newEventSpe&typeEvent=<?php echo $typeEvent ?>" method="post">
+<form action="index.php?action=newEventSpe&typeEvent=<?php echo $typeEvent; ?>" method="post">
 
 
 
@@ -12,7 +12,7 @@
                           
                     <p>
                         <label for="nom" class="form-label">Nom</label>
-                        <input type="text" name="nom" class="form-control" value="<?php echo $nom ?>"/>
+                        <input type="text" name="nom" class="form-control" value="<?php echo $nom; ?>"/>
                     </p>
 
                 </div>
@@ -23,18 +23,17 @@
                     <div class="form-group">
                         <label for="type" class="form-label">Etat</label>
                             <select name="type" class="form-select" id="type">
-                                <option value="<?php echo $identifiant_type ?>" selected>Valeur actuelle : <?php echo $intitule_type ?></option>
+                                <option value="<?php echo $identifiant_type; ?>" selected>Valeur actuelle : <?php echo $intitule_type; ?></option>
 
-                        <?php 
-                        require_once ('model/typeEventsSpeManager.php');
+                        <?php
+                        require_once 'model/typeEventsSpeManager.php';
                         $typeEventsSpeManager = new typeEventsSpeManager();
                         $req1 = $typeEventsSpeManager->getAllTypeEventsSpe();
-                        while ($data1 = $req1->fetch())
-                                    {  
-                                        echo '
-                                            <option value="' . $data1['identifiant'] . '" >' . $data1['intitule'] .'</option>
-                                        ';  
-                                    }
+                        while ($data1 = $req1->fetch()) {
+                            echo '
+                                            <option value="'.$data1['identifiant'].'" >'.$data1['intitule'].'</option>
+                                        ';
+                        }
                                 $req1->closeCursor();
                         ?>
 
@@ -57,18 +56,17 @@
                     <div class="form-group">
                         <label for="enseignant" class="form-label">Enseignant</label>
                             <select name="enseignant" class="form-select" id="enseignant" >
-                                <option value="<?php echo $identifiant_enseignant ?>" selected>Valeur actuelle : <?php echo $nom_enseignant ?></option>
+                                <option value="<?php echo $identifiant_enseignant; ?>" selected>Valeur actuelle : <?php echo $nom_enseignant; ?></option>
 
-                        <?php 
-                        require_once ('model/TeacherManager.php');
+                        <?php
+                        require_once 'model/TeacherManager.php';
                         $TeacherManager = new TeacherManager();
                         $req2 = $TeacherManager->getAllTeachers(present);
-                        while ($data2 = $req2->fetch())
-                                    {  
-                                        echo '
-                                            <option value="' . $data2['identifiant'] . '" >' . $data2['nom'] .' - ' . $data2['prenom'] . '</option>
-                                        ';  
-                                    }
+                        while ($data2 = $req2->fetch()) {
+                            echo '
+                                            <option value="'.$data2['identifiant'].'" >'.$data2['nom'].' - '.$data2['prenom'].'</option>
+                                        ';
+                        }
                                 $req2->closeCursor();
                         ?>
 
@@ -96,7 +94,7 @@
     <p>
         <label for="contenu" class="form-label">Contenu</label>
         
-        <textarea name="contenu" class="form-control" rows="10"><?php echo $contenu ?></textarea>
+        <textarea name="contenu" class="form-control" rows="10"><?php echo $contenu; ?></textarea>
     </p>
 
 </div>
@@ -121,7 +119,7 @@
                           
                     <p>
                         <label for="debut" class="form-label">Date de début</label>
-                        <input type="date" name="debut" class="form-control" required value="<?php echo $debut ?>"/>
+                        <input type="date" name="debut" class="form-control" required value="<?php echo $debut; ?>"/>
                     </p>
 
                 </div>
@@ -131,7 +129,7 @@
 
                     <p>
                         <label for="fin" class="form-label">Date de fin</label>
-                        <input type="date" name="fin" class="form-control" value="<?php echo $fin ?>"/>
+                        <input type="date" name="fin" class="form-control" value="<?php echo $fin; ?>"/>
                     </p>
 
                 </div>
@@ -169,10 +167,8 @@
 
 <?php
 
-        switch ($typeEvent)
-        {
-
-            case 'Taches' :
+        switch ($typeEvent) {
+            case 'Taches':
                 echo '
                    <fieldset>
                        <legend>Tâches</legend>
@@ -190,15 +186,14 @@
                                                <option value="'; echo $identifiant_thematiqueTaches; echo ' " selected>Valeur actuelle : '; echo $intitule_thematiqueTaches; echo ' </option>
 
                                             ';
-                                            require_once ('model/ThematiqueTachesManager.php');
+                                            require_once 'model/ThematiqueTachesManager.php';
                                             $ThematiqueTachesManager = new ThematiqueTachesManager();
                                             $req3 = $ThematiqueTachesManager->getAllThematiqueTaches();
-                                            while ($data3 = $req3->fetch())
-                                                        {  
-                                                            echo '
-                                                                <option value="' . $data3['identifiant'] . '" >' . $data3['intitule'] .'</option>
-                                                            ';  
-                                                        }
+                                            while ($data3 = $req3->fetch()) {
+                                                echo '
+                                                                <option value="'.$data3['identifiant'].'" >'.$data3['intitule'].'</option>
+                                                            ';
+                                            }
                                                     $req3->closeCursor();
                                             echo '
 
@@ -233,8 +228,7 @@
                 ';
             break;
 
-
-            case 'Revision_effectifs' :
+            case 'Revision_effectifs':
                 echo '
                    <fieldset>
                        <legend>Révision effectifs</legend>
@@ -245,18 +239,17 @@
                                         <div class="form-group">
                                             <label for="emploi_cible" class="form-label">Emploi cible</label>
                                                 <select name="emploi_cible" class="form-select" id="emploi_cible" >
-                                                    <option value="'; echo $identifiant_emploi_cible ; echo '" selected>Valeur actuelle :'; echo $intitule_emploi_cible ; echo '</option>
+                                                    <option value="'; echo $identifiant_emploi_cible; echo '" selected>Valeur actuelle :'; echo $intitule_emploi_cible; echo '</option>
 
                                             ';
-                                            require_once ('model/EmploiManager.php');
+                                            require_once 'model/EmploiManager.php';
                                             $EmploiManager = new EmploiManager();
                                             $req3 = $EmploiManager->getAllEmploi();
-                                            while ($data3 = $req3->fetch())
-                                                            {  
-                                                                echo '
-                                                                    <option value="' . $data3['identifiant'] . '" >' . $data3['intitule'] .'</option>
-                                                                ';  
-                                                            }
+                                            while ($data3 = $req3->fetch()) {
+                                                echo '
+                                                                    <option value="'.$data3['identifiant'].'" >'.$data3['intitule'].'</option>
+                                                                ';
+                                            }
                                                         $req3->closeCursor();
                                                 echo '
 
@@ -271,18 +264,17 @@
                                         <div class="form-group">
                                             <label for="support_cible" class="form-label">Support cible</label>
                                                 <select name="support_cible" class="form-select" id="support_cible" >
-                                                    <option value="'; echo $identifiant_support_cible ; echo '" selected>Valeur actuelle :'; echo $numero_formate_support_cible ; echo '</option>
+                                                    <option value="'; echo $identifiant_support_cible; echo '" selected>Valeur actuelle :'; echo $numero_formate_support_cible; echo '</option>
 
                                             ';
-                                            require_once ('model/SupportManager.php');
+                                            require_once 'model/SupportManager.php';
                                             $SupportManager = new SupportManager();
                                             $req3 = $SupportManager->getAllSupport('present');
-                                            while ($data3 = $req3->fetch())
-                                                        {  
-                                                            echo '
-                                                                <option value="' . $data3['identifiant'] . '" >' . $data3['numero_formate'] .'</option>
-                                                            ';  
-                                                        }
+                                            while ($data3 = $req3->fetch()) {
+                                                echo '
+                                                                <option value="'.$data3['identifiant'].'" >'.$data3['numero_formate'].'</option>
+                                                            ';
+                                            }
                                                     $req3->closeCursor();
                                                 echo '
 
@@ -309,8 +301,7 @@
                 ';
             break;
 
-
-            case 'Absence_departs' :
+            case 'Absence_departs':
                 echo '
                    <fieldset>
                        <legend>Absences départs</legend>
@@ -322,18 +313,17 @@
                                         <div class="form-group">
                                             <label for="absence_depart_arrivee" class="form-label">Nature</label>
                                                 <select name="absence_depart_arrivee" class="form-select" id="absence_depart_arrivee" >
-                                                    <option value="'; echo $identifiant_absence_depart_arrivee ; echo '" selected>Valeur actuelle :'; echo $etat_absence_depart_arrivee ; echo '</option>
+                                                    <option value="'; echo $identifiant_absence_depart_arrivee; echo '" selected>Valeur actuelle :'; echo $etat_absence_depart_arrivee; echo '</option>
 
                                             ';
-                                            require_once ('model/Absence_depart_arriveeManager.php');
+                                            require_once 'model/Absence_depart_arriveeManager.php';
                                             $Absence_depart_arriveeManager = new Absence_depart_arriveeManager();
                                             $req3 = $Absence_depart_arriveeManager->getAllAbsence_depart_arrivee();
-                                            while ($data3 = $req3->fetch())
-                                                            {  
-                                                                echo '
-                                                                    <option value="' . $data3['identifiant'] . '" >' . $data3['etat'] .'</option>
-                                                                ';  
-                                                            }
+                                            while ($data3 = $req3->fetch()) {
+                                                echo '
+                                                                    <option value="'.$data3['identifiant'].'" >'.$data3['etat'].'</option>
+                                                                ';
+                                            }
                                                         $req3->closeCursor();
                                                 echo '
 
@@ -365,8 +355,7 @@
                 ';
             break;
 
-
-            case 'Avancements' :
+            case 'Avancements':
                 echo '
                    <fieldset>
                        <legend>Avancements</legend>
@@ -378,18 +367,17 @@
                                         <div class="form-group">
                                             <label for="avis_avancement" class="form-label">Avis</label>
                                                 <select name="avis_avancement" class="form-select" id="avis_avancement" >
-                                                    <option value="'; echo $identifiant_avis_avancement ; echo '" selected>Valeur actuelle :'; echo $intitule_avis_avancement ; echo '</option>
+                                                    <option value="'; echo $identifiant_avis_avancement; echo '" selected>Valeur actuelle :'; echo $intitule_avis_avancement; echo '</option>
 
                                             ';
-                                            require_once ('model/AvisAvancementManager.php');
+                                            require_once 'model/AvisAvancementManager.php';
                                             $AvisAvancementManager = new AvisAvancementManager();
                                             $req3 = $AvisAvancementManager->getAllAvisAvancement();
-                                            while ($data3 = $req3->fetch())
-                                                        {  
-                                                            echo '
-                                                                <option value="' . $data3['identifiant'] . '" >' . $data3['intitule'] .'</option>
-                                                            ';  
-                                                        }
+                                            while ($data3 = $req3->fetch()) {
+                                                echo '
+                                                                <option value="'.$data3['identifiant'].'" >'.$data3['intitule'].'</option>
+                                                            ';
+                                            }
                                                     $req3->closeCursor();
                                             echo '
 
@@ -405,7 +393,7 @@
 
                                     <p>
                                         <label for="grade_cible" class="form-label">Grade cible</label>
-                                        <input type="text" name="grade_cible" value="'; echo $etat_grade_cible ; echo '" class="form-control" />
+                                        <input type="text" name="grade_cible" value="'; echo $etat_grade_cible; echo '" class="form-control" />
                                     </p>
 
 
@@ -428,8 +416,7 @@
                 ';
             break;
 
-
-            case 'Primes_hr' :
+            case 'Primes_hr':
                 echo '
                    <fieldset>
                        <legend>Primes/Heures référentielles</legend>
@@ -441,18 +428,17 @@
                                         <div class="form-group">
                                             <label for="nature_primes_hr" class="form-label">Primes/Heures référentielles</label>
                                                 <select name="nature_primes_hr" class="form-select" id="nature_primes_hr" >
-                                                    <option value="'; echo $identifiant_nature_primes_hr ; echo '" selected>'; echo $intitule_nature_primes_hr ; echo '</option>
+                                                    <option value="'; echo $identifiant_nature_primes_hr; echo '" selected>'; echo $intitule_nature_primes_hr; echo '</option>
 
                                             ';
-                                            require_once ('model/PrimesHrManager.php');
+                                            require_once 'model/PrimesHrManager.php';
                                             $PrimesHrManager = new PrimesHrManager();
                                             $req3 = $PrimesHrManager->getAllPrimesHr();
-                                            while ($data3 = $req3->fetch())
-                                                        {  
-                                                            echo '
-                                                                <option value="' . $data3['identifiant'] . '" >' . $data3['intitule'] .'</option>
-                                                            ';  
-                                                        }
+                                            while ($data3 = $req3->fetch()) {
+                                                echo '
+                                                                <option value="'.$data3['identifiant'].'" >'.$data3['intitule'].'</option>
+                                                            ';
+                                            }
                                                     $req3->closeCursor();
                                             echo '
 
@@ -467,7 +453,7 @@
 
                                     <p>
                                         <label for="montant" class="form-label">Montant</label>
-                                        <input type="number" name="montant" value="'; echo $montant ; echo '" class="form-control" />
+                                        <input type="number" name="montant" value="'; echo $montant; echo '" class="form-control" />
                                     </p>
 
                                 </div>
@@ -476,7 +462,7 @@
 
                                     <p>
                                         <label for="heures" class="form-label">Heures</label>
-                                        <input type="number" name="heures" value="'; echo $heures ; echo '" class="form-control" />
+                                        <input type="number" name="heures" value="'; echo $heures; echo '" class="form-control" />
                                     </p>
                 
                                 </div>
@@ -494,11 +480,7 @@
                 ';
             break;
 
-
             default:
-                
-
-
         }
 
 ?>

@@ -7,30 +7,23 @@
 
         <?php
 
-
-        if (isset($presearch)){
-
+        if (isset($presearch)) {
             echo
             '
             
-            <option value="' . $dataSaveLoad['identifiant'] . '" selected>Valeur actuelle : '. $dataSaveLoad['qui'] .' - '. $dataSaveLoad['nom'] .' </option>
+            <option value="'.$dataSaveLoad['identifiant'].'" selected>Valeur actuelle : '.$dataSaveLoad['qui'].' - '.$dataSaveLoad['nom'].' </option>
 
             '
             ;
-
-
-        } 
-
-
+        }
 
         $saveSearchManager = new saveSearchManager();
         $reqSave = $saveSearchManager->getAllSaveSearchTeacher();
-        while ($dataSave = $reqSave->fetch())
-                    {  
-                        echo '
-                            <option value="' . $dataSave['identifiant'] . '" >'. $dataSave['qui'] .' - '. $dataSave['nom'] .'</option>
-                        ';  
-                    }
+        while ($dataSave = $reqSave->fetch()) {
+            echo '
+                            <option value="'.$dataSave['identifiant'].'" >'.$dataSave['qui'].' - '.$dataSave['nom'].'</option>
+                        ';
+        }
                 $reqSave->closeCursor();
         ?>
 

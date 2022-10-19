@@ -1,42 +1,36 @@
 <?php
 
-require_once ('model/Manager.php');
+require_once 'model/Manager.php';
 
 class SupportManager extends mgmtHU\Model\Manager
 {
-    
-    
     public function getAllSupport($corbeille)
-    {   
-
+    {
         $select = $this->selectSupportManager();
-        $etatCorbeille = ($corbeille == "corbeille") ? 'su.Corbeille is not null' : 'su.Corbeille is null';
+        $etatCorbeille = ($corbeille == 'corbeille') ? 'su.Corbeille is not null' : 'su.Corbeille is null';
 
         $db = $this->dbConnect();
         $allSupport = $db->prepare('
             '.$select.'
             WHERE '.$etatCorbeille.'
             ORDER BY numero_formate
-        '); 
-        $allSupport->execute(array());
+        ');
+        $allSupport->execute([]);
+
         return $allSupport;
     }
 
-
-     public function getSupports($corbeille,$numero_formate,$nature,$budget,$eotp,$quotite,$categorie)
+    public function getSupports($corbeille, $numero_formate, $nature, $budget, $eotp, $quotite, $categorie)
     {
-
         $select = $this->selectSupportManager();
-        $etatCorbeille = ($corbeille == "corbeille") ? 'su.Corbeille is not null' : 'su.Corbeille is null';
+        $etatCorbeille = ($corbeille == 'corbeille') ? 'su.Corbeille is not null' : 'su.Corbeille is null';
 
-
-        $numero_formate_vide = ($numero_formate == "") ? 'OR su.numero_formate != \'\' OR su.numero_formate is NULL' : "";
-        $nature_vide = ($nature == "") ? 'OR su.nature != \'\' OR su.nature is NULL' : "";
-        $budget_vide = ($budget == "") ? 'OR su.budget != \'\' OR su.budget is NULL' : "";
-        $eotp_vide = ($eotp == "") ? 'OR su.eotp != \'\' OR su.eotp is NULL' : "";
-        $quotite_vide = ($quotite == "") ? 'OR su.quotite != \'\' OR su.quotite is NULL' : "";
-        $categorie_vide = ($categorie == "") ? 'OR su.categorie != \'\' OR su.categorie is NULL' : "";
-
+        $numero_formate_vide = ($numero_formate == '') ? 'OR su.numero_formate != \'\' OR su.numero_formate is NULL' : '';
+        $nature_vide = ($nature == '') ? 'OR su.nature != \'\' OR su.nature is NULL' : '';
+        $budget_vide = ($budget == '') ? 'OR su.budget != \'\' OR su.budget is NULL' : '';
+        $eotp_vide = ($eotp == '') ? 'OR su.eotp != \'\' OR su.eotp is NULL' : '';
+        $quotite_vide = ($quotite == '') ? 'OR su.quotite != \'\' OR su.quotite is NULL' : '';
+        $categorie_vide = ($categorie == '') ? 'OR su.categorie != \'\' OR su.categorie is NULL' : '';
 
         $db = $this->dbConnect();
         $support = $db->prepare('
@@ -45,64 +39,34 @@ class SupportManager extends mgmtHU\Model\Manager
             ORDER BY numero_formate
         ');
 
-        $support->execute(array(
-            'numero_formate'=> "%".$numero_formate."%",
-            'nature'=> "%".$nature."%",
-            'budget'=> "%".$budget."%",
-            'eotp'=> "%".$eotp."%",
-            'quotite'=> $quotite,
-            'categorie'=> "%".$categorie."%",
-            )); 
+        $support->execute([
+            'numero_formate' => '%'.$numero_formate.'%',
+            'nature' => '%'.$nature.'%',
+            'budget' => '%'.$budget.'%',
+            'eotp' => '%'.$eotp.'%',
+            'quotite' => $quotite,
+            'categorie' => '%'.$categorie.'%',
+            ]);
+
         return $support;
     }
 
-
-
-
-     public function getSupportsFree($corbeille,$listIdentifiantSupportsFree)
+    public function getSupportsFree($corbeille, $listIdentifiantSupportsFree)
     {
-
         $select = $this->selectSupportManager();
-        $etatCorbeille = ($corbeille == "corbeille") ? 'su.Corbeille is not null' : 'su.Corbeille is null';
+        $etatCorbeille = ($corbeille == 'corbeille') ? 'su.Corbeille is not null' : 'su.Corbeille is null';
 
+        $listIdentifiant = '';
 
-
-
-        
-        $listIdentifiant = "";
-
-        foreach ($listIdentifiantSupportsFree as $identifiant)
-
-            {
-
-                if ($listIdentifiant == "") 
-
-                {
-
-
-
-                    $listIdentifiant = $listIdentifiant . 'su.identifiant = '. $identifiant["identifiant_support"] .' ' ;
-
-                }
-
-                else if ($listIdentifiant != "") 
-
-                {
-
-
-                    $listIdentifiant = $listIdentifiant . ' OR su.identifiant = '. $identifiant["identifiant_support"] .' ' ;
-
-                }
-
-
+        foreach ($listIdentifiantSupportsFree as $identifiant) {
+            if ($listIdentifiant == '') {
+                $listIdentifiant = $listIdentifiant.'su.identifiant = '.$identifiant['identifiant_support'].' ';
+            } elseif ($listIdentifiant != '') {
+                $listIdentifiant = $listIdentifiant.' OR su.identifiant = '.$identifiant['identifiant_support'].' ';
             }
-
+        }
 
         $db = $this->dbConnect();
-
-
-
-
 
         $support = $db->prepare('
             SELECT su.identifiant identifiant, su.numero_formate numero_formate, su.nature nature, su.budget budget, su.eotp eotp, su.quotite quotite, su.categorie categorie, su.corbeille etatCorbeille, su.prenom prenom, su.nom nom, su.absence_depart absence_depart_arrivee, DATE_FORMAT(su.debut, \'%d/%m/%Y \') debut, DATE_FORMAT(su.fin, \'%d/%m/%Y \') fin, su.debut debut2, su.fin fin2, supp.renseignement renseignement, su.identifiant_enseignant identifiant_enseignant, su.date_blocage date_blocage, su.date_liberation date_liberation
@@ -134,24 +98,16 @@ class SupportManager extends mgmtHU\Model\Manager
             ORDER BY su.absence_depart DESC
         ');
 
+        $support->execute([
+            'supportAssMG' => '%AMG%',
+            'supportSurn' => '%SUR%',
+            ]);
 
-
-        $support->execute(array(
-            'supportAssMG'=> "%AMG%",
-            'supportSurn'=> "%SUR%",            
-            )); 
         return $support;
     }
 
-
-
-
-
-
-
-     public function getSupportsById($identifiant)
+    public function getSupportsById($identifiant)
     {
-
         $select = $this->selectSupportManager();
 
         $db = $this->dbConnect();
@@ -160,39 +116,33 @@ class SupportManager extends mgmtHU\Model\Manager
             WHERE su.identifiant = :identifiant
         ');
 
-        $support->execute(array(
-            'identifiant'=> $identifiant,
-            )); 
+        $support->execute([
+            'identifiant' => $identifiant,
+            ]);
+
         return $support;
     }
 
-
-
-    public function createSupport($numero_formate,$nature,$budget,$eotp,$quotite,$categorie)
+    public function createSupport($numero_formate, $nature, $budget, $eotp, $quotite, $categorie)
     {
         $db = $this->dbConnect();
         $newSupport = $db->prepare('INSERT INTO support (identifiant,numero_formate,nature,budget,eotp,quotite,categorie) 
 
         VALUES (NULL, :numero_formate, :nature, :budget, :eotp, :quotite, :categorie);');
 
-        $newSupport->execute(array(
-            'numero_formate'=> $numero_formate,
-            'nature'=> $nature,
-            'budget'=> $budget,
-            'eotp'=> $eotp,
-            'quotite'=> $quotite,
-            'categorie'=> $categorie,
-            ));
+        $newSupport->execute([
+            'numero_formate' => $numero_formate,
+            'nature' => $nature,
+            'budget' => $budget,
+            'eotp' => $eotp,
+            'quotite' => $quotite,
+            'categorie' => $categorie,
+            ]);
+
         return $newSupport;
     }
-    
 
-
-
-
-    public function modifSupport($identifiant,$numero_formate,$nature,$budget,$eotp,$quotite,$categorie,$renseignement)
-
-
+    public function modifSupport($identifiant, $numero_formate, $nature, $budget, $eotp, $quotite, $categorie, $renseignement)
     {
         $db = $this->dbConnect();
         $modifSupport = $db->prepare('
@@ -215,25 +165,21 @@ class SupportManager extends mgmtHU\Model\Manager
 
         ');
 
-        $modifSupport->execute(array(
+        $modifSupport->execute([
             'identifiant' => $identifiant,
-            'numero_formate'=> $numero_formate,
-            'nature'=> $nature,
-            'budget'=> $budget,
-            'eotp'=> $eotp,
-            'quotite'=> $quotite,
-            'categorie'=> $categorie,
-            'renseignement'=> $renseignement,
-            ));
+            'numero_formate' => $numero_formate,
+            'nature' => $nature,
+            'budget' => $budget,
+            'eotp' => $eotp,
+            'quotite' => $quotite,
+            'categorie' => $categorie,
+            'renseignement' => $renseignement,
+            ]);
+
         return $modifSupport;
     }
 
-
-
-
-    public function majSupportDateBlocage($identifiant,$date_blocage)
-
-
+    public function majSupportDateBlocage($identifiant, $date_blocage)
     {
         $db = $this->dbConnect();
         $majSupportDateBlocage = $db->prepare('
@@ -250,18 +196,15 @@ class SupportManager extends mgmtHU\Model\Manager
 
         ');
 
-        $majSupportDateBlocage->execute(array(
+        $majSupportDateBlocage->execute([
             'identifiant' => $identifiant,
-            'date_blocage'=> $date_blocage,
-            ));
+            'date_blocage' => $date_blocage,
+            ]);
+
         return $majSupportDateBlocage;
     }
 
-
-
-    public function majSupportDateLiberation($identifiant,$date_liberation)
-
-
+    public function majSupportDateLiberation($identifiant, $date_liberation)
     {
         $db = $this->dbConnect();
         $majSupportDateLiberation = $db->prepare('
@@ -278,18 +221,15 @@ class SupportManager extends mgmtHU\Model\Manager
 
         ');
 
-        $majSupportDateLiberation->execute(array(
+        $majSupportDateLiberation->execute([
             'identifiant' => $identifiant,
-            'date_liberation'=> $date_liberation,
-            ));
+            'date_liberation' => $date_liberation,
+            ]);
+
         return $majSupportDateLiberation;
     }
 
-
-
-
-
-public function corbeilleSupport($identifiant)
+    public function corbeilleSupport($identifiant)
     {
         $db = $this->dbConnect();
         $corbeilleSupport = $db->prepare('
@@ -304,14 +244,14 @@ public function corbeilleSupport($identifiant)
 
         ');
 
-        $corbeilleSupport->execute(array(
+        $corbeilleSupport->execute([
             'identifiant' => $identifiant,
-            ));
+            ]);
+
         return $corbeilleSupport;
     }
 
-
-public function restoreSupport($identifiant)
+    public function restoreSupport($identifiant)
     {
         $db = $this->dbConnect();
         $restoreSupport = $db->prepare('
@@ -326,13 +266,10 @@ public function restoreSupport($identifiant)
 
         ');
 
-        $restoreSupport->execute(array(
+        $restoreSupport->execute([
             'identifiant' => $identifiant,
-            ));
+            ]);
+
         return $restoreSupport;
     }
-
-
-
-
 }

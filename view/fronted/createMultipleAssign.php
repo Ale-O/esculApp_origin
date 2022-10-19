@@ -1,9 +1,7 @@
 <?php ob_start(); ?>
 
    
-    <?php 
-
-
+    <?php
 
         $assignManager = new assignManager();
         $reqAssign = $assignManager->getAssignsById($arrayData[0]);
@@ -12,7 +10,7 @@
 
         $TeacherManager = new TeacherManager();
         $reqTeacher = $TeacherManager->getTeachersById($identifiant);
-        
+
         $dataTeacher = $reqTeacher->fetch();
 
         $identifiant_emploi = $dataTeacher['identifiant_emploi'];
@@ -21,16 +19,13 @@
         $identifiant_sous_emploi = $dataTeacher['identifiant_sous_emploi'];
         $intitule_sous_emploi = $dataTeacher['intitule_sous_emploi'];
 
-
         $reqTeacher->closeCursor();
 
-
-
-        require ("view/fronted/form/createMultipleAssignForm.php");
+        require 'view/fronted/form/createMultipleAssignForm.php';
 
     ?>
     
                     
 <?php $content = ob_get_clean(); ?>
-<?php require('view/fronted/template/template.php'); ?>
+<?php require 'view/fronted/template/template.php'; ?>
 

@@ -1,24 +1,20 @@
 <?php
 
-require_once ('model/Manager.php');
+require_once 'model/Manager.php';
 
 class LoginManager extends mgmtHU\Model\Manager
 {
-    
-    
     public function getAllLogin()
-    {   
+    {
         $db = $this->dbConnect();
-        $allLogin = $db->prepare('SELECT * FROM login'); 
-        $allLogin->execute(array());
+        $allLogin = $db->prepare('SELECT * FROM login');
+        $allLogin->execute([]);
+
         return $allLogin;
     }
 
-
-
-     public function getLoginById($identifiant)
+    public function getLoginById($identifiant)
     {
-
         $db = $this->dbConnect();
         $login = $db->prepare('
             SELECT l.identifiant identifiant, l.password password
@@ -26,19 +22,17 @@ class LoginManager extends mgmtHU\Model\Manager
             WHERE l.identifiant = :identifiant
         ');
 
-        $login->execute(array(
-            'identifiant'=> $identifiant
-            )); 
+        $login->execute([
+            'identifiant' => $identifiant,
+            ]);
+
         return $login;
     }
 
-
-
-    public function modifLogin($identifiant,$newPassword)
+    public function modifLogin($identifiant, $newPassword)
     {
-
-    $db = $this->dbConnect();
-    $modifLogin = $db->prepare('
+        $db = $this->dbConnect();
+        $modifLogin = $db->prepare('
 
         UPDATE `login` 
 
@@ -49,12 +43,11 @@ class LoginManager extends mgmtHU\Model\Manager
 
     ');
 
-    $modifLogin->execute(array(
+        $modifLogin->execute([
         'identifiant' => $identifiant,
         'newPassword' => $newPassword,
-        ));
-    return $modifLogin;
-    }
+        ]);
 
-    
+        return $modifLogin;
+    }
 }

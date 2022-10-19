@@ -1,6 +1,6 @@
-<?php 
+<?php
 
-            $nom = $data['nom']; 
+            $nom = $data['nom'];
             $prenom = $data['prenom'];
             $nom_jeune_fille = $data['nom_jeune_fille'];
             $statut_surnombre_emeritat = $data['statut_surnombre_emeritat'];
@@ -67,5 +67,3 @@
             $telephone = $data['telephone'];
             $fin_enseignant = $data['fin_enseignant'];
             $debut_grade = $data['debut_grade'];
-
-?>

@@ -15,10 +15,10 @@
 
 
 
-    <?php require("view/fronted/import/importMangueForm.php"); ?>   
+    <?php require 'view/fronted/import/importMangueForm.php'; ?>   
                   
 
                        
 
 <?php $content = ob_get_clean(); ?>
-<?php require('view/fronted/template/template.php'); ?>
+<?php require 'view/fronted/template/template.php'; ?>

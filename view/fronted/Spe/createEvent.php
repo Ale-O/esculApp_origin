@@ -1,13 +1,13 @@
 <?php ob_start(); ?>
 
    
-    <?php 
+    <?php
 
-        require ("view/fronted/Spe/form/createEventForm.php");
+        require 'view/fronted/Spe/form/createEventForm.php';
 
     ?>
     
                     
 <?php $content = ob_get_clean(); ?>
-<?php require('view/fronted/template/template.php'); ?>
+<?php require 'view/fronted/template/template.php'; ?>
 

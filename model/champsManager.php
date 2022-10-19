@@ -1,171 +1,147 @@
 <?php
 
-require_once ('model/Manager.php');
+require_once 'model/Manager.php';
 
 class champsManager extends mgmtHU\Model\Manager
 {
-
-
-
-    public function itemById($table,$identifiant)
+    public function itemById($table, $identifiant)
     {
-
-        
-
-        switch ($table)
-        { 
-            Case 'absence_depart_arrivee':
+        switch ($table) {
+            case 'absence_depart_arrivee':
                 $champs = 'etat';
             break;
             case 'actif':
-                $champs = 'etat' ;
+                $champs = 'etat';
             break;
-            Case 'action_affectation' : 
-                $champs = 'action' ;
+            case 'action_affectation':
+                $champs = 'action';
             break;
-            Case 'affectation_pedagogique' : 
-                $champs = 'intitule' ;
+            case 'affectation_pedagogique':
+                $champs = 'intitule';
             break;
-            Case 'affectation_support' : 
-                $champs = 'support' ;
+            case 'affectation_support':
+                $champs = 'support';
             break;
-            Case 'annee_civile' :
-                $champs = 'annee' ;
+            case 'annee_civile':
+                $champs = 'annee';
             break;
-            Case 'cause_depart' : 
-                $champs = 'intitule' ;
+            case 'cause_depart':
+                $champs = 'intitule';
             break;
-            Case 'cnu' : 
-                $champs = 'libelle' ;
+            case 'cnu':
+                $champs = 'libelle';
             break;
-            Case 'commission_hu' : 
-                $champs = 'annee_civile' ;
+            case 'commission_hu':
+                $champs = 'annee_civile';
             break;
-            Case 'dphu' :
-                $champs = 'intitule' ;
+            case 'dphu':
+                $champs = 'intitule';
             break;
-            Case 'eligible_election' : 
-                $champs = 'etat' ;
+            case 'eligible_election':
+                $champs = 'etat';
             break;
-            Case 'emploi' : 
-                $champs = 'intitule' ;
+            case 'emploi':
+                $champs = 'intitule';
             break;
-            Case 'enseignants' : 
-                $champs = 'nom' ;
+            case 'enseignants':
+                $champs = 'nom';
             break;
-            Case 'experience' : 
-                $champs = 'etat' ;
+            case 'experience':
+                $champs = 'etat';
             break;
-            Case 'hdr' : 
-                $champs = 'etat' ;
+            case 'hdr':
+                $champs = 'etat';
             break;
-            Case 'id_mangue' : 
-                $champs = 'sexe' ;
+            case 'id_mangue':
+                $champs = 'sexe';
             break;
-            Case 'laboratoire' : 
-                $champs = 'nom' ;
+            case 'laboratoire':
+                $champs = 'nom';
             break;
-            Case 'liste_diffusion' : 
-                $champs = 'etat' ;
+            case 'liste_diffusion':
+                $champs = 'etat';
             break;
-            Case 'login' : 
-                $champs = 'prenom' ;
+            case 'login':
+                $champs = 'prenom';
             break;
-            Case 'mobilite' : 
-                $champs = 'etat' ;
+            case 'mobilite':
+                $champs = 'etat';
             break;
-            Case 'next' :
-                $champs = 'next' ;
+            case 'next':
+                $champs = 'next';
             break;
-            Case 'nom_chu' : 
-                $champs = 'discipline' ;
+            case 'nom_chu':
+                $champs = 'discipline';
             break;
-            Case 'origine_support' :
-                $champs = 'intitule' ;
+            case 'origine_support':
+                $champs = 'intitule';
             break;
-            Case 'precnu' : 
-                $champs = 'etat' ;
+            case 'precnu':
+                $champs = 'etat';
             break;
-            Case 'save_search' : 
-                $champs = 'qui' ;
+            case 'save_search':
+                $champs = 'qui';
             break;
-            Case 'sous_emploi' :
-                $champs = 'intitule' ;
+            case 'sous_emploi':
+                $champs = 'intitule';
             break;
-            Case 'succession' : 
-                $champs = 'enseignant' ;
+            case 'succession':
+                $champs = 'enseignant';
             break;
-            Case 'suivi' : 
-                $champs = 'qui' ;
+            case 'suivi':
+                $champs = 'qui';
             break;
-            Case 'suivi_retraite' : 
-                $champs = 'etat' ;
+            case 'suivi_retraite':
+                $champs = 'etat';
             break;
-            Case 'support' :
-                $champs = 'numero_formate' ;
+            case 'support':
+                $champs = 'numero_formate';
             break;
-            Case 'surnombre_emeritat' :
-                $champs = 'statut' ;
+            case 'surnombre_emeritat':
+                $champs = 'statut';
             break;
-            Case 'trajectoire_hu' :
-                $champs = 'etat' ;
+            case 'trajectoire_hu':
+                $champs = 'etat';
             break;
-            Case 'validation_fiche' :
-                $champs = 'etat' ;
+            case 'validation_fiche':
+                $champs = 'etat';
             break;
-            Case 'type_evenement' :
-                $champs = 'intitule' ;
+            case 'type_evenement':
+                $champs = 'intitule';
             break;
-            Case 'type_evenement_spe' :
-                $champs = 'intitule' ;
+            case 'type_evenement_spe':
+                $champs = 'intitule';
             break;
-            Case 'thematique_taches' :
-                $champs = 'intitule' ;
+            case 'thematique_taches':
+                $champs = 'intitule';
             break;
-            Case 'nature_primes_hr' :
-                $champs = 'intitule' ;
+            case 'nature_primes_hr':
+                $champs = 'intitule';
             break;
-            Case 'avis_avancement' :
-                $champs = 'intitule' ;
+            case 'avis_avancement':
+                $champs = 'intitule';
             break;
             default:
-                $champs = 'nonChamps' ;
+                $champs = 'nonChamps';
         }
 
+        if ($champs == 'nonChamps') {
+            $contenuChamps = 'nonChamps';
 
-        if ($champs == 'nonChamps'){
-
-
-        $contenuChamps = 'nonChamps';
-        return $contenuChamps;
-
-
-        }
-
-        else 
-
-        {
-
-
-        $db = $this->dbConnect();
-        $contenuChamps = $db->prepare('
+            return $contenuChamps;
+        } else {
+            $db = $this->dbConnect();
+            $contenuChamps = $db->prepare('
             SELECT t.'.$champs.' champs
             FROM '.$table.' t
             WHERE t.identifiant = :identifiant
         ');
 
-        $contenuChamps->execute(array(
-            'identifiant'=> $identifiant
-            )); 
-        
-        return $contenuChamps;
+            $contenuChamps->execute([
+            'identifiant' => $identifiant,
+            ]);
 
-
+            return $contenuChamps;
         }
-
-
     }
-
-
-    
 }

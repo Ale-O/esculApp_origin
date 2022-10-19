@@ -1,13 +1,11 @@
 <?php
 
-require_once ('model/Manager.php');
+require_once 'model/Manager.php';
 
 class SuccessionManager extends mgmtHU\Model\Manager
 {
-    
-    
     public function getAllSuccession()
-    {   
+    {
         $db = $this->dbConnect();
         $allSuccession = $db->prepare('
             SELECT s.identifiant identifiant_succession, e.nom nom_enseignant, o.intitule origine_support, a.annee annee_civile, c.intitule cause_depart, n.next etat_next 
@@ -23,9 +21,9 @@ class SuccessionManager extends mgmtHU\Model\Manager
             LEFT JOIN next n
             ON s.next = n.identifiant
 
-            '); 
-        $allSuccession->execute(array());
+            ');
+        $allSuccession->execute([]);
+
         return $allSuccession;
     }
-
 }

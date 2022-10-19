@@ -33,16 +33,15 @@
                         <select name="emploi" class="form-select" id="emploi">
                         <option value="" selected>Sélectionner</option>
 
-                                        <?php 
-                            require_once ('model/EmploiManager.php');
+                                        <?php
+                            require_once 'model/EmploiManager.php';
                             $EmploiManager = new EmploiManager();
                             $reqList = $EmploiManager->getAllEmploi();
-                            while ($dataList = $reqList->fetch())
-                                        {  
-                                            echo '
-                                                <option value="' . $dataList['intitule'] . '">' . $dataList['intitule'] . '</option>
+                            while ($dataList = $reqList->fetch()) {
+                                echo '
+                                                <option value="'.$dataList['intitule'].'">'.$dataList['intitule'].'</option>
                                             ';
-                                        }
+                            }
                                     $reqList->closeCursor();
                             ?>
 
@@ -59,16 +58,15 @@
                         <select name="sous_emploi" class="form-select" id="sous_emploi">
                             <option value="" selected>Sélectionner</option>
 
-                                <?php 
-                    require_once ('model/SousEmploiManager.php');
+                                <?php
+                    require_once 'model/SousEmploiManager.php';
                     $SousEmploiManager = new SousEmploiManager();
                     $reqList = $SousEmploiManager->getAllSousEmploi();
-                    while ($dataList = $reqList->fetch())
-                                {  
-                                    echo '
-                                        <option value="' . $dataList['intitule_sous_emploi'] . '">' . $dataList['intitule_sous_emploi'] . '</option>
+                    while ($dataList = $reqList->fetch()) {
+                        echo '
+                                        <option value="'.$dataList['intitule_sous_emploi'].'">'.$dataList['intitule_sous_emploi'].'</option>
                                     ';
-                                }
+                    }
                             $reqList->closeCursor();
                     ?>
 
@@ -106,16 +104,15 @@
                     <select name="absence_depart_arrivee" class="form-select" id="absence_depart_arrivee">
                     <option value="" selected>Sélectionner</option>
 
-                                    <?php 
-                        require_once ('model/Absence_depart_arriveeManager.php');
+                                    <?php
+                        require_once 'model/Absence_depart_arriveeManager.php';
                         $Absence_depart_arriveeManager = new Absence_depart_arriveeManager();
                         $reqList = $Absence_depart_arriveeManager->getAllAbsence_depart_arrivee();
-                        while ($dataList = $reqList->fetch())
-                                    {  
-                                        echo '
-                                            <option value="' . $dataList['etat'] . '">' . $dataList['etat'] . '</option>
+                        while ($dataList = $reqList->fetch()) {
+                            echo '
+                                            <option value="'.$dataList['etat'].'">'.$dataList['etat'].'</option>
                                         ';
-                                    }
+                        }
                                 $reqList->closeCursor();
                         ?>
 
@@ -133,16 +130,15 @@
                     <select name="actif" class="form-select" id="actif">
                     <option value="" selected>Sélectionner</option>
 
-                                    <?php 
-                        require_once ('model/ActifManager.php');
+                                    <?php
+                        require_once 'model/ActifManager.php';
                         $actifManager = new actifManager();
                         $reqList = $actifManager->getAllActif();
-                        while ($dataList = $reqList->fetch())
-                                    {  
-                                        echo '
-                                            <option value="' . $dataList['etat'] . '">' . $dataList['etat'] . '</option>
+                        while ($dataList = $reqList->fetch()) {
+                            echo '
+                                            <option value="'.$dataList['etat'].'">'.$dataList['etat'].'</option>
                                         ';
-                                    }
+                        }
                                 $reqList->closeCursor();
                         ?>
 
@@ -159,16 +155,15 @@
                         <select name="cnu" class="form-select" id="cnu">
                         <option value="" selected>Sélectionner</option>
 
-                                        <?php 
-                            require_once ('model/CnuManager.php');
+                                        <?php
+                            require_once 'model/CnuManager.php';
                             $CnuManager = new CnuManager();
                             $reqList = $CnuManager->getAllCnu();
-                            while ($dataList = $reqList->fetch())
-                                        {  
-                                            echo '
-                                                <option value="' . $dataList['libelle'] . '">' . $dataList['libelle'] . ' - ' . $dataList['code'] . '</option>
+                            while ($dataList = $reqList->fetch()) {
+                                echo '
+                                                <option value="'.$dataList['libelle'].'">'.$dataList['libelle'].' - '.$dataList['code'].'</option>
                                             ';
-                                        }
+                            }
                                     $reqList->closeCursor();
                             ?>
 
@@ -242,16 +237,15 @@
                             <select name="dphu" class="form-select" id="dphu" >
                                 <option value="" selected>Sélectionner</option>
 
-                                    <?php 
-                        require_once ('model/DphuManager.php');
+                                    <?php
+                        require_once 'model/DphuManager.php';
                         $DphuManager = new DphuManager();
                         $reqList = $DphuManager->getAllDphu();
-                        while ($dataList = $reqList->fetch())
-                                    {  
-                                        echo '
-                                            <option value="' . $dataList['intitule'] . '">' . $dataList['intitule'] . '</option>
+                        while ($dataList = $reqList->fetch()) {
+                            echo '
+                                            <option value="'.$dataList['intitule'].'">'.$dataList['intitule'].'</option>
                                         ';
-                                    }
+                        }
                                 $reqList->closeCursor();
                         ?>
 
@@ -269,16 +263,15 @@
                             <select name="affectation_pedagogique" class="form-select" id="affectation_pedagogique" >
                                 <option value="" selected>Sélectionner</option>
 
-                                    <?php 
-                        require_once ('model/AffectationPedagogiqueManager.php');
+                                    <?php
+                        require_once 'model/AffectationPedagogiqueManager.php';
                         $AffectationPedagogiqueManager = new AffectationPedagogiqueManager();
                         $reqList = $AffectationPedagogiqueManager->getAllAffectationPedagogique();
-                        while ($dataList = $reqList->fetch())
-                                    {  
-                                        echo '
-                                            <option value="' . $dataList['intitule_affectation_pedagogique'] . '">' . $dataList['intitule_affectation_pedagogique'] . '</option>
+                        while ($dataList = $reqList->fetch()) {
+                            echo '
+                                            <option value="'.$dataList['intitule_affectation_pedagogique'].'">'.$dataList['intitule_affectation_pedagogique'].'</option>
                                         ';
-                                    }
+                        }
                                 $reqList->closeCursor();
                         ?>
 
@@ -296,16 +289,15 @@
                             <select name="laboratoire" class="form-select" id="laboratoire" >
                                 <option value="" selected>Sélectionner</option>
 
-                                    <?php 
-                        require_once ('model/LaboratoireManager.php');
+                                    <?php
+                        require_once 'model/LaboratoireManager.php';
                         $LaboratoireManager = new LaboratoireManager();
                         $reqList = $LaboratoireManager->getAllLaboratoire();
-                        while ($dataList = $reqList->fetch())
-                                    {  
-                                        echo '
-                                            <option value="' . $dataList['code'] . '">' . $dataList['nom'] . ' - ' . $dataList['code'] . '</option>
+                        while ($dataList = $reqList->fetch()) {
+                            echo '
+                                            <option value="'.$dataList['code'].'">'.$dataList['nom'].' - '.$dataList['code'].'</option>
                                         ';
-                                    }
+                        }
                                 $reqList->closeCursor();
                         ?>
 
@@ -323,16 +315,15 @@
                             <select name="next" class="form-select" id="next" >
                                 <option value="" selected>Sélectionner</option>
 
-                                    <?php 
-                        require_once ('model/NextManager.php');
+                                    <?php
+                        require_once 'model/NextManager.php';
                         $NextManager = new NextManager();
                         $reqList = $NextManager->getAllNext();
-                        while ($dataList = $reqList->fetch())
-                                    {  
-                                        echo '
-                                            <option value="' . $dataList['next'] . '">' . $dataList['next'] . '</option>
+                        while ($dataList = $reqList->fetch()) {
+                            echo '
+                                            <option value="'.$dataList['next'].'">'.$dataList['next'].'</option>
                                         ';
-                                    }
+                        }
                                 $reqList->closeCursor();
                         ?>
 
@@ -376,16 +367,15 @@
                             <select name="trajectoire_hu" class="form-select" id="trajectoire_hu" >
                                 <option value="" selected>Sélectionner</option>
 
-                                    <?php 
-                        require_once ('model/TrajectoireHuManager.php');
+                                    <?php
+                        require_once 'model/TrajectoireHuManager.php';
                         $TrajectoireHuManager = new TrajectoireHuManager();
                         $reqList = $TrajectoireHuManager->getAllTrajectoireHu();
-                        while ($dataList = $reqList->fetch())
-                                    {  
-                                        echo '
-                                            <option value="' . $dataList['etat'] . '">' . $dataList['etat'] . '</option>
+                        while ($dataList = $reqList->fetch()) {
+                            echo '
+                                            <option value="'.$dataList['etat'].'">'.$dataList['etat'].'</option>
                                         ';
-                                    }
+                        }
                                 $reqList->closeCursor();
                         ?>
 
@@ -404,16 +394,15 @@
                             <select name="annee_civile" class="form-select" id="annee_civile" >
                                 <option value="" selected>Sélectionner</option>
 
-                                    <?php 
-                        require_once ('model/AnneeCivileManager.php');
+                                    <?php
+                        require_once 'model/AnneeCivileManager.php';
                         $AnneeCivileManager = new AnneeCivileManager();
                         $reqList = $AnneeCivileManager->getAllAnneeCivile();
-                        while ($dataList = $reqList->fetch())
-                                    {  
-                                        echo '
-                                            <option value="' . $dataList['annee'] . '">' . $dataList['annee'] . '</option>
+                        while ($dataList = $reqList->fetch()) {
+                            echo '
+                                            <option value="'.$dataList['annee'].'">'.$dataList['annee'].'</option>
                                         ';
-                                    }
+                        }
                                 $reqList->closeCursor();
                         ?>
 
@@ -431,16 +420,15 @@
                             <select name="emploi_cible" class="form-select" id="emploi_cible" >
                                 <option value="" selected>Sélectionner</option>
 
-                                    <?php 
-                        require_once ('model/EmploiManager.php');
+                                    <?php
+                        require_once 'model/EmploiManager.php';
                         $EmploiManager = new EmploiManager();
                         $reqList = $EmploiManager->getAllEmploi();
-                        while ($dataList = $reqList->fetch())
-                                    {  
-                                        echo '
-                                            <option value="' . $dataList['intitule'] . '">' . $dataList['intitule'] . '</option>
+                        while ($dataList = $reqList->fetch()) {
+                            echo '
+                                            <option value="'.$dataList['intitule'].'">'.$dataList['intitule'].'</option>
                                         ';
-                                    }
+                        }
                                 $reqList->closeCursor();
                         ?>
 
@@ -458,16 +446,15 @@
                             <select name="succession" class="form-select" id="succession" >
                                 <option value="" selected>Sélectionner</option>
 
-                        <?php 
-                        require_once ('model/SupportManager.php');
+                        <?php
+                        require_once 'model/SupportManager.php';
                         $SupportManager = new SupportManager();
                         $reqList = $SupportManager->getAllSupport('present');
-                        while ($dataList = $reqList->fetch())
-                                    {  
-                                        echo '
-                                            <option value="' . $dataList['numero_formate'] . '" >' . $dataList['numero_formate'] .'</option>
-                                        ';  
-                                    }
+                        while ($dataList = $reqList->fetch()) {
+                            echo '
+                                            <option value="'.$dataList['numero_formate'].'" >'.$dataList['numero_formate'].'</option>
+                                        ';
+                        }
                                 $reqList->closeCursor();
                         ?>
 
@@ -497,16 +484,15 @@
                             <select name="experience" class="form-select" id="experience" >
                                 <option value="" selected>Sélectionner</option>
 
-                                    <?php 
-                        require_once ('model/ExperienceManager.php');
+                                    <?php
+                        require_once 'model/ExperienceManager.php';
                         $ExperienceManager = new ExperienceManager();
                         $reqList = $ExperienceManager->getAllExperience();
-                        while ($dataList = $reqList->fetch())
-                                    {  
-                                        echo '
-                                            <option value="' . $dataList['etat'] . '">' . $dataList['etat'] . '</option>
+                        while ($dataList = $reqList->fetch()) {
+                            echo '
+                                            <option value="'.$dataList['etat'].'">'.$dataList['etat'].'</option>
                                         ';
-                                    }
+                        }
                                 $reqList->closeCursor();
                         ?>
 
@@ -524,16 +510,15 @@
                             <select name="mobilite" class="form-select" id="mobilite" >
                                 <option value="" selected>Sélectionner</option>
 
-                                    <?php 
-                        require_once ('model/MobiliteManager.php');
+                                    <?php
+                        require_once 'model/MobiliteManager.php';
                         $MobiliteManager = new MobiliteManager();
                         $reqList = $MobiliteManager->getAllMobilite();
-                        while ($dataList = $reqList->fetch())
-                                    {  
-                                        echo '
-                                            <option value="' . $dataList['etat'] . '">' . $dataList['etat'] . '</option>
+                        while ($dataList = $reqList->fetch()) {
+                            echo '
+                                            <option value="'.$dataList['etat'].'">'.$dataList['etat'].'</option>
                                         ';
-                                    }
+                        }
                                 $reqList->closeCursor();
                         ?>
 
@@ -551,16 +536,15 @@
                             <select name="hdr" class="form-select" id="hdr" >
                                 <option value="" selected>Sélectionner</option>
 
-                                    <?php 
-                        require_once ('model/HdrManager.php');
+                                    <?php
+                        require_once 'model/HdrManager.php';
                         $HdrManager = new HdrManager();
                         $reqList = $HdrManager->getAllHdr();
-                        while ($dataList = $reqList->fetch())
-                                    {  
-                                        echo '
-                                            <option value="' . $dataList['etat'] . '">' . $dataList['etat'] . '</option>
+                        while ($dataList = $reqList->fetch()) {
+                            echo '
+                                            <option value="'.$dataList['etat'].'">'.$dataList['etat'].'</option>
                                         ';
-                                    }
+                        }
                                 $reqList->closeCursor();
                         ?>
 
@@ -578,16 +562,15 @@
                             <select name="precnu" class="form-select" id="precnu" >
                                 <option value="" selected>Sélectionner</option>
 
-                                    <?php 
-                        require_once ('model/PrecnuManager.php');
+                                    <?php
+                        require_once 'model/PrecnuManager.php';
                         $PrecnuManager = new PrecnuManager();
                         $reqList = $PrecnuManager->getAllPrecnu();
-                        while ($dataList = $reqList->fetch())
-                                    {  
-                                        echo '
-                                            <option value="' . $dataList['etat'] . '">' . $dataList['etat'] . '</option>
+                        while ($dataList = $reqList->fetch()) {
+                            echo '
+                                            <option value="'.$dataList['etat'].'">'.$dataList['etat'].'</option>
                                         ';
-                                    }
+                        }
                                 $reqList->closeCursor();
                         ?>
 
@@ -611,16 +594,15 @@
                             <select name="commission_evaluation_hu" class="form-select" id="commission_evaluation_hu" >
                                 <option value="" selected>Sélectionner</option>
 
-                                    <?php 
-                        require_once ('model/CommissionHuManager.php');
+                                    <?php
+                        require_once 'model/CommissionHuManager.php';
                         $CommissionHuManager = new CommissionHuManager();
                         $reqList = $CommissionHuManager->getAllCommissionHu();
-                        while ($dataList = $reqList->fetch())
-                                    {  
-                                        echo '
-                                            <option value="' . $dataList['annee_civile'] . '">Commission - ' . $dataList['annee_civile'] . '</option>
+                        while ($dataList = $reqList->fetch()) {
+                            echo '
+                                            <option value="'.$dataList['annee_civile'].'">Commission - '.$dataList['annee_civile'].'</option>
                                         ';
-                                    }
+                        }
                                 $reqList->closeCursor();
                         ?>
 
@@ -702,16 +684,15 @@
                             <select name="liste_de_diffusion" class="form-select" id="liste_de_diffusion" >
                                 <option value="" selected>Sélectionner</option>
 
-                                    <?php 
-                        require_once ('model/ListeDiffusionManager.php');
+                                    <?php
+                        require_once 'model/ListeDiffusionManager.php';
                         $ListeDiffusionManager = new ListeDiffusionManager();
                         $reqList = $ListeDiffusionManager->getAllListeDiffusion();
-                        while ($dataList = $reqList->fetch())
-                                    {  
-                                        echo '
-                                            <option value="' . $dataList['etat'] . '">' . $dataList['etat'] . '</option>
+                        while ($dataList = $reqList->fetch()) {
+                            echo '
+                                            <option value="'.$dataList['etat'].'">'.$dataList['etat'].'</option>
                                         ';
-                                    }
+                        }
                                 $reqList->closeCursor();
                         ?>
 
@@ -729,16 +710,15 @@
                                 <select name="eligible_election" class="form-select" id="eligible_election" >
                                     <option value="" selected>Sélectionner</option>
 
-                            <?php 
-                            require_once ('model/EligibleElectionManager.php');
+                            <?php
+                            require_once 'model/EligibleElectionManager.php';
                             $EligibleElectionManager = new EligibleElectionManager();
                             $reqList = $EligibleElectionManager->getAllEligibleElection();
-                            while ($dataList = $reqList->fetch())
-                                        {  
-                                            echo '
-                                                <option value="' . $dataList['etat'] . '">' . $dataList['etat'] . '</option>
+                            while ($dataList = $reqList->fetch()) {
+                                echo '
+                                                <option value="'.$dataList['etat'].'">'.$dataList['etat'].'</option>
                                             ';
-                                        }
+                            }
                                     $reqList->closeCursor();
                             ?>
 
@@ -860,16 +840,15 @@
                         <select name="surnombre_emeritat" class="form-select" id="surnombre_emeritat" >
                             <option value="" selected>Sélectionner</option>
 
-                    <?php 
-                    require_once ('model/SurnombreEmeritatManager.php');
+                    <?php
+                    require_once 'model/SurnombreEmeritatManager.php';
                     $SurnombreEmeritatManager = new SurnombreEmeritatManager();
                     $reqList = $SurnombreEmeritatManager->getAllSurnombreEmeritat();
-                    while ($dataList = $reqList->fetch())
-                                {  
-                                    echo '
-                                        <option value="' . $dataList['statut'] . '" >' . $dataList['statut'] .'</option>
-                                    ';  
-                                }
+                    while ($dataList = $reqList->fetch()) {
+                        echo '
+                                        <option value="'.$dataList['statut'].'" >'.$dataList['statut'].'</option>
+                                    ';
+                    }
                             $reqList->closeCursor();
                     ?>
 

@@ -2,12 +2,11 @@
 
 
 
-    <?php require("view/fronted/form/searchSuiviForm.php"); ?>
+    <?php require 'view/fronted/form/searchSuiviForm.php'; ?>
 
-    <?php 
+    <?php
 
-    require_once ('model/champsManager.php');
-
+    require_once 'model/champsManager.php';
 
        echo '
 
@@ -28,67 +27,51 @@
        </thead>
        <tbody>';
 
-            while ($data = $req->fetch())
-                {
+            while ($data = $req->fetch()) {
+                $champsManager = new champsManager();
+                $req1 = $champsManager->itemById($data['champsEnregistrement'], $data['ancienneValeur']);
 
-
-                    $champsManager = new champsManager();
-                    $req1 = $champsManager->itemById($data['champsEnregistrement'],$data['ancienneValeur']);
-
-
-                    if ($req1 == 'nonChamps') 
-                    {
+                if ($req1 == 'nonChamps') {
                     $ancienneValeur = $data['ancienneValeur'];
-                    }
-
-                    else 
-                    {
+                } else {
                     $items = $req1->fetchAll();
-                    $item = $items[0]; 
+                    $item = $items[0];
                     $ancienneValeur = $item[0];
-                    }
+                }
 
+                $champsManager = new champsManager();
+                $req2 = $champsManager->itemById($data['champsEnregistrement'], $data['nouvelleValeur']);
 
-
-                    $champsManager = new champsManager();
-                    $req2 = $champsManager->itemById($data['champsEnregistrement'],$data['nouvelleValeur']);
-
-                    if ($req2 == 'nonChamps') 
-                    {
+                if ($req2 == 'nonChamps') {
                     $nouvelleValeur = $data['nouvelleValeur'];
-                    }
-
-                    else 
-                    {
+                } else {
                     $items1 = $req2->fetchAll();
-                    $item1 = $items1[0]; 
+                    $item1 = $items1[0];
                     $nouvelleValeur = $item1[0];
-                    }
+                }
 
-                   
-                    echo '<tr>
+                echo '<tr>
                 
 
-                        <td>' . $data['qui'] . '</td>
-                        <td>' . $data['quand'] . '</td>
-                        <td>' . $data['quoiTable'] . '</td>
-                        <td>' . $data['nomEnregistrement'] . '</td>
-                        <td>' . $data['idEnregistrement'] . '</td>
-                        <td>' . $data['champsEnregistrement'] . '</td>
+                        <td>'.$data['qui'].'</td>
+                        <td>'.$data['quand'].'</td>
+                        <td>'.$data['quoiTable'].'</td>
+                        <td>'.$data['nomEnregistrement'].'</td>
+                        <td>'.$data['idEnregistrement'].'</td>
+                        <td>'.$data['champsEnregistrement'].'</td>
                         
-                        <td>' . $ancienneValeur . '</td>
+                        <td>'.$ancienneValeur.'</td>
 
-                        <td>' . $nouvelleValeur . '</td>
+                        <td>'.$nouvelleValeur.'</td>
 
 
                     </tr>';
-                                }
+            }
         echo '</tbody></table>';
-
 
         $req->closeCursor();
     ?>
                         
 
 <?php $content = ob_get_clean(); ?>
-<?php require('view/fronted/template/template.php'); ?>
+<?php require 'view/fronted/template/template.php'; ?>

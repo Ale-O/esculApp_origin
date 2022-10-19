@@ -22,16 +22,15 @@
                             <select name="type" class="form-select" id="type" >
                                 <option value="" selected>Sélectionner></option>
 
-                        <?php 
-                        require_once ('model/typeEventsManager.php');
+                        <?php
+                        require_once 'model/typeEventsManager.php';
                         $typeEventsManager = new typeEventsManager();
                         $req1 = $typeEventsManager->getAllTypeEvents();
-                        while ($data = $req1->fetch())
-                                    {  
-                                        echo '
-                                            <option value="' . $data['intitule'] . '" >' . $data['intitule'] .'</option>
-                                        ';  
-                                    }
+                        while ($data = $req1->fetch()) {
+                            echo '
+                                            <option value="'.$data['intitule'].'" >'.$data['intitule'].'</option>
+                                        ';
+                        }
                                 $req1->closeCursor();
                         ?>
 

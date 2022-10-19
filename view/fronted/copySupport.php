@@ -1,12 +1,12 @@
 <?php ob_start(); ?>
 
    
-    <?php 
+    <?php
 
     $SupportManager = new SupportManager();
 
     $req = $SupportManager->getSupportsById($identifiant);
-        
+
         $data = $req->fetch();
 
             $numero_formate = $data['numero_formate'];
@@ -16,17 +16,13 @@
             $quotite = $data['quotite'];
             $categorie = $data['categorie'];
 
-
-
-
         $req->closeCursor();
 
-
-        require ("view/fronted/form/copySupportForm.php");
+        require 'view/fronted/form/copySupportForm.php';
 
     ?>
     
                     
 <?php $content = ob_get_clean(); ?>
-<?php require('view/fronted/template/template.php'); ?>
+<?php require 'view/fronted/template/template.php'; ?>
 

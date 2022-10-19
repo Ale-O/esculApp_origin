@@ -8,12 +8,11 @@
         <?php
         $saveSearchManager = new saveSearchManager();
         $reqSave = $saveSearchManager->getAllSaveSearchEvent();
-        while ($dataSave = $reqSave->fetch())
-                    {  
-                        echo '
-                            <option value="' . $dataSave['formule'] . '" >'. $dataSave['qui'] .' - ' . $dataSave['nom'] .'</option>
-                        ';  
-                    }
+        while ($dataSave = $reqSave->fetch()) {
+            echo '
+                            <option value="'.$dataSave['formule'].'" >'.$dataSave['qui'].' - '.$dataSave['nom'].'</option>
+                        ';
+        }
                 $reqSave->closeCursor();
         ?>
 

@@ -9,7 +9,7 @@
                           
                     <div class="form-group">
                         <label for="nom" class="form-label">Nom : </label>
-                        <input type="text" name="nom" class="form-control" value="<?php echo $nom ?>"/>
+                        <input type="text" name="nom" class="form-control" value="<?php echo $nom; ?>"/>
                     </div>
 
                 </div>
@@ -20,18 +20,17 @@
                     <div class="form-group">
                         <label for="type" class="form-label">Type :</label>
                             <select name="type" class="form-select" id="type" >
-                                <option value="<?php echo $type ?>" selected><?php echo $type ?></option>
+                                <option value="<?php echo $type; ?>" selected><?php echo $type; ?></option>
 
-                        <?php 
-                        require_once ('model/typeEventsManager.php');
+                        <?php
+                        require_once 'model/typeEventsManager.php';
                         $typeEventsManager = new typeEventsManager();
                         $req1 = $typeEventsManager->getAllTypeEvents();
-                        while ($data = $req1->fetch())
-                                    {  
-                                        echo '
-                                            <option value="' . $data['intitule'] . '" >' . $data['intitule'] .'</option>
-                                        ';  
-                                    }
+                        while ($data = $req1->fetch()) {
+                            echo '
+                                            <option value="'.$data['intitule'].'" >'.$data['intitule'].'</option>
+                                        ';
+                        }
                                 $req1->closeCursor();
                         ?>
 
@@ -46,7 +45,7 @@
                           
                     <div class="form-group">
                         <label for="contenu" class="form-label">Contenu : </label>
-                        <input type="text" name="contenu" class="form-control" value="<?php echo $contenu ?>"/>
+                        <input type="text" name="contenu" class="form-control" value="<?php echo $contenu; ?>"/>
                     </div>
 
                 </div>
@@ -56,7 +55,7 @@
                           
                     <div class="form-group">
                         <label for="enseignant" class="form-label">Enseignant : </label>
-                        <input type="text" name="enseignant" class="form-control" value="<?php echo $enseignant ?>"/>
+                        <input type="text" name="enseignant" class="form-control" value="<?php echo $enseignant; ?>"/>
                     </div>
                       
                 </div>
@@ -71,7 +70,7 @@
                           
                     <div class="form-group">
                         <label for="debut" class="form-label">Date de début : </label>
-                        <input type="date" name="debut" class="form-control" value="<?php echo $debut ?>"/>
+                        <input type="date" name="debut" class="form-control" value="<?php echo $debut; ?>"/>
                     </div>
 
                 </div>
@@ -81,7 +80,7 @@
 
                     <div class="form-group">
                         <label for="fin" class="form-label">Date de fin : </label>
-                        <input type="date" name="fin" class="form-control" value="<?php echo $fin ?>"/>
+                        <input type="date" name="fin" class="form-control" value="<?php echo $fin; ?>"/>
                     </div>
 
                 </div>
@@ -107,7 +106,7 @@
 
         <div class="form-group">
             <label for="corbeille" class="form-label">Corbeille : </label>
-            <input type="checkbox" name="corbeille" <?php echo $corbeilleChecked ?>/>
+            <input type="checkbox" name="corbeille" <?php echo $corbeilleChecked; ?>/>
         </div>
 
 <br>
@@ -136,7 +135,7 @@
                 </div>
                 <div class="form-group">
                     <label for="formule" class="form-label"></label>
-                    <input type="hidden" name="formule" value="<?php echo $nom.";".$type.";".$contenu.";".$debut.";".$fin.";".$enseignant.";".$corbeilleChecked ?>"/>
+                    <input type="hidden" name="formule" value="<?php echo $nom.';'.$type.';'.$contenu.';'.$debut.';'.$fin.';'.$enseignant.';'.$corbeilleChecked; ?>"/>
                 </div>
                 <div class="form-group">
                     <label for="nomSave" class="form-label">Nom de la recherche : </label>
@@ -154,12 +153,11 @@
 
         $saveSearchManager = new saveSearchManager();
         $reqSave = $saveSearchManager->getAllSaveSearchEvent();
-        while ($dataSave = $reqSave->fetch())
-                    {  
-                        echo '
-                            <option value="' . $dataSave['identifiant'] . '" >'. $dataSave['qui'] .' - '. $dataSave['nom'] .'</option>
-                        ';  
-                    }
+        while ($dataSave = $reqSave->fetch()) {
+            echo '
+                            <option value="'.$dataSave['identifiant'].'" >'.$dataSave['qui'].' - '.$dataSave['nom'].'</option>
+                        ';
+        }
                 $reqSave->closeCursor();
         ?>
 

@@ -10,7 +10,7 @@
                           
                     <div class="form-group">
                         <label for="numero_formate" class="form-label">Numéro de poste : </label>
-                        <input type="text" name="numero_formate" class="form-control" value="<?php echo $numero_formate ?>"/>
+                        <input type="text" name="numero_formate" class="form-control" value="<?php echo $numero_formate; ?>"/>
                     </div>
 
                 </div>
@@ -20,7 +20,7 @@
 
                     <div class="form-group">
                         <label for="categorie" class="form-label">Catégorie : </label>
-                        <input type="text" name="categorie" class="form-control" value="<?php echo $categorie ?>"/>
+                        <input type="text" name="categorie" class="form-control" value="<?php echo $categorie; ?>"/>
                     </div>
 
                 </div>
@@ -62,7 +62,7 @@
         </div>
         <div class="form-group">
             <label for="formule" class="form-label"></label>
-            <input type="hidden" name="formule" value="<?php echo $numero_formate.";".$categorie.";".$corbeilleChecked ?>"/>
+            <input type="hidden" name="formule" value="<?php echo $numero_formate.';'.$categorie.';'.$corbeilleChecked; ?>"/>
         </div>
         <div class="form-group">
             <label for="nomSave" class="form-label">Nom de la recherche : </label>
@@ -81,12 +81,11 @@
 
         $saveSearchManager = new saveSearchManager();
         $reqSave = $saveSearchManager->getAllSaveSearchSupport();
-        while ($dataSave = $reqSave->fetch())
-                    {  
-                        echo '
-                            <option value="' . $dataSave['identifiant'] . '" >'. $dataSave['qui'] .' - '. $dataSave['nom'] .'</option>
-                        ';  
-                    }
+        while ($dataSave = $reqSave->fetch()) {
+            echo '
+                            <option value="'.$dataSave['identifiant'].'" >'.$dataSave['qui'].' - '.$dataSave['nom'].'</option>
+                        ';
+        }
                 $reqSave->closeCursor();
         ?>
 

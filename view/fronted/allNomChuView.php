@@ -4,10 +4,7 @@
 
 
 
-    <?php 
-
-
-
+    <?php
 
        echo '
 
@@ -34,38 +31,34 @@
        </thead>
        <tbody>';
 
-            while ($data = $req->fetch())
-                {
-
-                   
-                    echo '<tr>
+            while ($data = $req->fetch()) {
+                echo '<tr>
                 
 
-                        <td>' . $data[0] . '</td>
-                        <td>' . $data[1] . '</td>
-                        <td>' . $data[2] . '</td>
-                        <td>' . $data[3] . '</td>
-                        <td>' . $data[4] . '</td>
-                        <td>' . $data[5] . '</td>
-                        <td>' . $data[6] . '</td>
-                        <td>' . $data[7] . '</td>
-                        <td>' . $data[8] . '</td>
-                        <td>' . $data[9] . '</td>
-                        <td>' . $data[10] . '</td>
-                        <td>' . $data[11] . '</td>
-                        <td>' . $data[12] . '</td>
-                        <td>' . $data[13] . '</td>
+                        <td>'.$data[0].'</td>
+                        <td>'.$data[1].'</td>
+                        <td>'.$data[2].'</td>
+                        <td>'.$data[3].'</td>
+                        <td>'.$data[4].'</td>
+                        <td>'.$data[5].'</td>
+                        <td>'.$data[6].'</td>
+                        <td>'.$data[7].'</td>
+                        <td>'.$data[8].'</td>
+                        <td>'.$data[9].'</td>
+                        <td>'.$data[10].'</td>
+                        <td>'.$data[11].'</td>
+                        <td>'.$data[12].'</td>
+                        <td>'.$data[13].'</td>
 
 
 
                     </tr>';
-                                }
+            }
         echo '</tbody></table>';
-
 
         $req->closeCursor();
     ?>
                         
 
 <?php $content = ob_get_clean(); ?>
-<?php require('view/fronted/template/template.php'); ?>
+<?php require 'view/fronted/template/template.php'; ?>

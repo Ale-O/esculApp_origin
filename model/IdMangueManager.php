@@ -1,25 +1,23 @@
 <?php
 
-require_once ('model/Manager.php');
+require_once 'model/Manager.php';
 
 class IdMangueManager extends mgmtHU\Model\Manager
 {
-    
-
     public function getAllImportIdMangue()
-    {   
+    {
         $db = $this->dbConnect();
         $allIdMangue = $db->prepare('
             SELECT * 
             FROM id_mangue
-            '); 
-        $allIdMangue->execute(array());
+            ');
+        $allIdMangue->execute([]);
+
         return $allIdMangue;
     }
 
-    
     public function getAllIdMangue()
-    {   
+    {
         $db = $this->dbConnect();
         $allIdMangue = $db->prepare('
             SELECT * 
@@ -33,38 +31,34 @@ class IdMangueManager extends mgmtHU\Model\Manager
                 OR id_mangue.corps = "PRCE" 
                 OR id_mangue.corps = "PU MG"
                 OR id_mangue.corps = ""
-            '); 
-        $allIdMangue->execute(array());
+            ');
+        $allIdMangue->execute([]);
+
         return $allIdMangue;
     }
 
-
-
-        public function getIdMangueById($identifiant)
+    public function getIdMangueById($identifiant)
     {
         $db = $this->dbConnect();
         $idMangue = $db->prepare('
             SELECT * FROM id_mangue
             WHERE id_mangue.identifiant = :identifiant
             ');
-        $idMangue->execute(array(
-            'identifiant'=> $identifiant
-            ));    
+        $idMangue->execute([
+            'identifiant' => $identifiant,
+            ]);
+
         return $idMangue;
     }
 
-
-
-
-    public function createIdMangue($identifiant,$sexe,$civilite,$nom,$prenom,$nom_de_famille,$date_de_naissance,$lieu_de_naissance,$departement_de_naissance,$pays_de_naissance,$pays_national,$no_insee,$pers_id,$date_debut,$date_fin,$corps,$grade,$echelon,$position,$quotite,$indice,$statut,$type_contrat,$reliquat_annee,$reliquat_mois,$reliquat_jours,$conserv_annees,$conserv_mois,$Conserv_jours,$debut_aff,$fin_aff,$aff_niv1,$aff_niv2,$aff_globale,$quot_aff,$anc_gen,$anc_svc,$debut_occ,$fin_occ,$quot_occ,$quot_fin,$emploi,$implantation,$chapitre,$adresse,$code_postal,$ville,$code_spec,$specialisation)
-
+    public function createIdMangue($identifiant, $sexe, $civilite, $nom, $prenom, $nom_de_famille, $date_de_naissance, $lieu_de_naissance, $departement_de_naissance, $pays_de_naissance, $pays_national, $no_insee, $pers_id, $date_debut, $date_fin, $corps, $grade, $echelon, $position, $quotite, $indice, $statut, $type_contrat, $reliquat_annee, $reliquat_mois, $reliquat_jours, $conserv_annees, $conserv_mois, $Conserv_jours, $debut_aff, $fin_aff, $aff_niv1, $aff_niv2, $aff_globale, $quot_aff, $anc_gen, $anc_svc, $debut_occ, $fin_occ, $quot_occ, $quot_fin, $emploi, $implantation, $chapitre, $adresse, $code_postal, $ville, $code_spec, $specialisation)
     {
         $db = $this->dbConnect();
         $newIdMangue = $db->prepare('INSERT INTO id_mangue (identifiant,sexe,civilite,nom,prenom,nom_de_famille,date_de_naissance,lieu_de_naissance,departement_de_naissance,pays_de_naissance,pays_national,no_insee,pers_id,date_debut,date_fin,corps,grade,echelon,position,quotite,indice,statut,type_contrat,reliquat_annee,reliquat_mois,reliquat_jours,conserv_annees,conserv_mois,Conserv_jours,debut_aff,fin_aff,aff_niv1,aff_niv2,aff_globale,quot_aff,anc_gen,anc_svc,debut_occ,fin_occ,quot_occ,quot_fin,emploi,implantation,chapitre,adresse,code_postal,ville,code_spec,specialisation) 
 
         VALUES (:identifiant, :sexe, :civilite, :nom, :prenom, :nom_de_famille, :date_de_naissance, :lieu_de_naissance, :departement_de_naissance, :pays_de_naissance, :pays_national, :no_insee, :pers_id, :date_debut, :date_fin, :corps, :grade, :echelon, :position, :quotite, :indice, :statut, :type_contrat, :reliquat_annee, :reliquat_mois, :reliquat_jours, :conserv_annees, :conserv_mois, :Conserv_jours, :debut_aff, :fin_aff, :aff_niv1, :aff_niv2, :aff_globale, :quot_aff, :anc_gen, :anc_svc, :debut_occ, :fin_occ, :quot_occ, :quot_fin, :emploi, :implantation, :chapitre, :adresse, :code_postal, :ville, :code_spec, :specialisation);');
 
-        $newIdMangue->execute(array(
+        $newIdMangue->execute([
             'identifiant' => $identifiant,
             'sexe' => $sexe,
             'civilite' => $civilite,
@@ -114,16 +108,12 @@ class IdMangueManager extends mgmtHU\Model\Manager
             'ville' => $ville,
             'code_spec' => $code_spec,
             'specialisation' => $specialisation,
-            ));
+            ]);
+
         return $newIdMangue;
     }
 
-
-
-
-    public function modifIdMangue($identifiant,$sexe,$civilite,$nom,$prenom,$nom_de_famille,$date_de_naissance,$lieu_de_naissance,$departement_de_naissance,$pays_de_naissance,$pays_national,$no_insee,$pers_id,$date_debut,$date_fin,$corps,$grade,$echelon,$position,$quotite,$indice,$statut,$type_contrat,$reliquat_annee,$reliquat_mois,$reliquat_jours,$conserv_annees,$conserv_mois,$Conserv_jours,$debut_aff,$fin_aff,$aff_niv1,$aff_niv2,$aff_globale,$quot_aff,$anc_gen,$anc_svc,$debut_occ,$fin_occ,$quot_occ,$quot_fin,$emploi,$implantation,$chapitre,$adresse,$code_postal,$ville,$code_spec,$specialisation)
-
-
+    public function modifIdMangue($identifiant, $sexe, $civilite, $nom, $prenom, $nom_de_famille, $date_de_naissance, $lieu_de_naissance, $departement_de_naissance, $pays_de_naissance, $pays_national, $no_insee, $pers_id, $date_debut, $date_fin, $corps, $grade, $echelon, $position, $quotite, $indice, $statut, $type_contrat, $reliquat_annee, $reliquat_mois, $reliquat_jours, $conserv_annees, $conserv_mois, $Conserv_jours, $debut_aff, $fin_aff, $aff_niv1, $aff_niv2, $aff_globale, $quot_aff, $anc_gen, $anc_svc, $debut_occ, $fin_occ, $quot_occ, $quot_fin, $emploi, $implantation, $chapitre, $adresse, $code_postal, $ville, $code_spec, $specialisation)
     {
         $db = $this->dbConnect();
         $modifIdMangue = $db->prepare('
@@ -188,7 +178,7 @@ class IdMangueManager extends mgmtHU\Model\Manager
 
         ');
 
-        $modifIdMangue->execute(array(
+        $modifIdMangue->execute([
             'identifiant' => $identifiant,
             'sexe' => $sexe,
             'civilite' => $civilite,
@@ -238,11 +228,8 @@ class IdMangueManager extends mgmtHU\Model\Manager
             'ville' => $ville,
             'code_spec' => $code_spec,
             'specialisation' => $specialisation,
-            ));
+            ]);
+
         return $modifIdMangue;
     }
-
-
-
-    
 }

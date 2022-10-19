@@ -32,16 +32,15 @@
                             <select name="emploi" class="form-select" id="emploi">
                                 <option value="" selected>Sélectionner</option>
 
-                                    <?php 
-                        require_once ('model/EmploiManager.php');
+                                    <?php
+                        require_once 'model/EmploiManager.php';
                         $EmploiManager = new EmploiManager();
                         $reqList = $EmploiManager->getAllEmploi();
-                        while ($dataList = $reqList->fetch())
-                                    {  
-                                        echo '
-                                            <option value="' . $dataList['intitule'] . '">' . $dataList['intitule'] . '</option>
+                        while ($dataList = $reqList->fetch()) {
+                            echo '
+                                            <option value="'.$dataList['intitule'].'">'.$dataList['intitule'].'</option>
                                         ';
-                                    }
+                        }
                                 $reqList->closeCursor();
                         ?>
 
@@ -59,16 +58,15 @@
                             <select name="sous_emploi" class="form-select" id="sous_emploi" >
                                 <option value="" selected>Sélectionner</option>
 
-                                    <?php 
-                        require_once ('model/SousEmploiManager.php');
+                                    <?php
+                        require_once 'model/SousEmploiManager.php';
                         $SousEmploiManager = new SousEmploiManager();
                         $reqList = $SousEmploiManager->getAllSousEmploi();
-                        while ($dataList = $reqList->fetch())
-                                    {  
-                                        echo '
-                                            <option value="' . $dataList['intitule_sous_emploi'] . '">' . $dataList['intitule_sous_emploi'] . '</option>
+                        while ($dataList = $reqList->fetch()) {
+                            echo '
+                                            <option value="'.$dataList['intitule_sous_emploi'].'">'.$dataList['intitule_sous_emploi'].'</option>
                                         ';
-                                    }
+                        }
                                 $reqList->closeCursor();
                         ?>
 
@@ -115,16 +113,15 @@
                             <select name="action_affectation" class="form-select" id="action_affectation" >
                                 <option value="" selected>Sélectionner</option>
 
-                        <?php 
-                        require_once ('model/ActionAffectationManager.php');
+                        <?php
+                        require_once 'model/ActionAffectationManager.php';
                         $ActionAffectationManager = new ActionAffectationManager();
                         $reqList = $ActionAffectationManager->getAllActionAffectation();
-                        while ($dataList = $reqList->fetch())
-                                    {  
-                                        echo '
-                                            <option value="' . $dataList['action'] . '" >' . $dataList['action'] .'</option>
-                                        ';  
-                                    }
+                        while ($dataList = $reqList->fetch()) {
+                            echo '
+                                            <option value="'.$dataList['action'].'" >'.$dataList['action'].'</option>
+                                        ';
+                        }
                                 $reqList->closeCursor();
                         ?>
 
