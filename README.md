@@ -1,5 +1,7 @@
 # esculApp_origin
 
+![Alt text](/assets/image/esculApp_homepage.png?raw=true "Homepage")
+
 1) for use esculapp with the data_example, import the esculapp_example.sql in your MySQL administration tool like phpadmin
 
 2) config the file manager.php (model/manager.php) : modifie user_name and password in the function "dbConnect()" below
